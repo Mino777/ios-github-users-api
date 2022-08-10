@@ -11,7 +11,7 @@ import SnapKit
 
 final class UserListViewController: UIViewController {
 
-    private lazy var userListView = UserListView()
+    private lazy var userListView = UserListView(viewModel: viewModel)
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
     
@@ -37,8 +37,11 @@ final class UserListViewController: UIViewController {
 extension UserListViewController {
     
     private func setupView() {
+        view.backgroundColor = .systemBackground
+        
         addSubviews()
         setupConstraint()
+        setupNavigationBar()
     }
     
     private func addSubviews() {
@@ -49,5 +52,12 @@ extension UserListViewController {
         userListView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func setupNavigationBar() {
+        title = "사용자 리스트"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "내 팔로잉", style: .plain, target: self, action: nil)
     }
 }
