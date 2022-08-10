@@ -15,6 +15,10 @@
 		A1CC0C6C28A37C2100C7D4B7 /* GithubUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C6B28A37C2100C7D4B7 /* GithubUsersTests.swift */; };
 		A1CC0C7628A37C2100C7D4B7 /* GithubUsersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C7528A37C2100C7D4B7 /* GithubUsersUITests.swift */; };
 		A1CC0C7828A37C2100C7D4B7 /* GithubUsersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C7728A37C2100C7D4B7 /* GithubUsersUITestsLaunchTests.swift */; };
+		A1CC0C8628A386B900C7D4B7 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A1CC0C8528A386B900C7D4B7 /* RxCocoa-Dynamic */; };
+		A1CC0C8828A386B900C7D4B7 /* RxRelay-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A1CC0C8728A386B900C7D4B7 /* RxRelay-Dynamic */; };
+		A1CC0C8A28A386B900C7D4B7 /* RxSwift-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A1CC0C8928A386B900C7D4B7 /* RxSwift-Dynamic */; };
+		A1CC0C8D28A386EE00C7D4B7 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A1CC0C8C28A386EE00C7D4B7 /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CC0C8828A386B900C7D4B7 /* RxRelay-Dynamic in Frameworks */,
+				A1CC0C8A28A386B900C7D4B7 /* RxSwift-Dynamic in Frameworks */,
+				A1CC0C8628A386B900C7D4B7 /* RxCocoa-Dynamic in Frameworks */,
+				A1CC0C8D28A386EE00C7D4B7 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +148,12 @@
 			dependencies = (
 			);
 			name = GithubUsers;
+			packageProductDependencies = (
+				A1CC0C8528A386B900C7D4B7 /* RxCocoa-Dynamic */,
+				A1CC0C8728A386B900C7D4B7 /* RxRelay-Dynamic */,
+				A1CC0C8928A386B900C7D4B7 /* RxSwift-Dynamic */,
+				A1CC0C8C28A386EE00C7D4B7 /* SnapKit-Dynamic */,
+			);
 			productName = GithubUsers;
 			productReference = A1CC0C5128A37C1F00C7D4B7 /* GithubUsers.app */;
 			productType = "com.apple.product-type.application";
@@ -212,6 +226,10 @@
 				Base,
 			);
 			mainGroup = A1CC0C4828A37C1F00C7D4B7;
+			packageReferences = (
+				A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A1CC0C8B28A386EE00C7D4B7 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A1CC0C5228A37C1F00C7D4B7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -590,6 +608,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
+		A1CC0C8B28A386EE00C7D4B7 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1CC0C8528A386B900C7D4B7 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		A1CC0C8728A386B900C7D4B7 /* RxRelay-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxRelay-Dynamic";
+		};
+		A1CC0C8928A386B900C7D4B7 /* RxSwift-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxSwift-Dynamic";
+		};
+		A1CC0C8C28A386EE00C7D4B7 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CC0C8B28A386EE00C7D4B7 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1CC0C4928A37C1F00C7D4B7 /* Project object */;
 }
