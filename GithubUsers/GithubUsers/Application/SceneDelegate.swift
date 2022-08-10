@@ -8,6 +8,8 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    private var appCoorinator: AppCoordinator?
+    private let appDIContainer = AppDIContainer()
 
     var window: UIWindow?
 
@@ -19,9 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let rootNavigationController = UINavigationController(rootViewController: ViewController())
-        window?.rootViewController = rootNavigationController
+        let rootNaivgationController = UINavigationController()
+        window?.rootViewController = rootNaivgationController
         window?.makeKeyAndVisible()
+                        
+        appCoorinator = AppCoordinator(navigationController: rootNaivgationController, appDIContainer: appDIContainer)
+        appCoorinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

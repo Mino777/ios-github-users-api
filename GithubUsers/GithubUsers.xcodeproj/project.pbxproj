@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A13B7F1028A395FE0079226D /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F0F28A395FE0079226D /* AppDIContainer.swift */; };
+		A13B7F1228A396520079226D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1128A396520079226D /* AppCoordinator.swift */; };
+		A13B7F1728A397FF0079226D /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1628A397FF0079226D /* UserListViewModel.swift */; };
+		A13B7F1928A3981B0079226D /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1828A3981B0079226D /* UserListViewController.swift */; };
+		A13B7F1B28A398750079226D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1A28A398750079226D /* User.swift */; };
+		A13B7F1D28A398C70079226D /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1C28A398C70079226D /* UserUseCase.swift */; };
+		A1CA8CA628A39B3400C40642 /* UserRepositoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA528A39B3400C40642 /* UserRepositoriable.swift */; };
+		A1CA8CA828A39B4D00C40642 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA728A39B4D00C40642 /* UserRepository.swift */; };
+		A1CA8CAA28A39B8A00C40642 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA928A39B8A00C40642 /* UserStorage.swift */; };
+		A1CA8CAC28A39BDC00C40642 /* UserListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAB28A39BDC00C40642 /* UserListViewCoordinator.swift */; };
+		A1CA8CAE28A39CAF00C40642 /* UserSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAD28A39CAF00C40642 /* UserSceneDIContainer.swift */; };
+		A1CA8CB028A39FB600C40642 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAF28A39FB600C40642 /* UserListView.swift */; };
 		A1CC0C5528A37C1F00C7D4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C5428A37C1F00C7D4B7 /* AppDelegate.swift */; };
 		A1CC0C5728A37C1F00C7D4B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C5628A37C1F00C7D4B7 /* SceneDelegate.swift */; };
-		A1CC0C5928A37C1F00C7D4B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C5828A37C1F00C7D4B7 /* ViewController.swift */; };
 		A1CC0C5E28A37C2100C7D4B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CC0C5D28A37C2100C7D4B7 /* Assets.xcassets */; };
 		A1CC0C6128A37C2100C7D4B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CC0C5F28A37C2100C7D4B7 /* LaunchScreen.storyboard */; };
 		A1CC0C6C28A37C2100C7D4B7 /* GithubUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C6B28A37C2100C7D4B7 /* GithubUsersTests.swift */; };
@@ -39,10 +50,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A13B7F0F28A395FE0079226D /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		A13B7F1128A396520079226D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A13B7F1628A397FF0079226D /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		A13B7F1828A3981B0079226D /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		A13B7F1A28A398750079226D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A13B7F1C28A398C70079226D /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		A1CA8CA528A39B3400C40642 /* UserRepositoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriable.swift; sourceTree = "<group>"; };
+		A1CA8CA728A39B4D00C40642 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		A1CA8CA928A39B8A00C40642 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		A1CA8CAB28A39BDC00C40642 /* UserListViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewCoordinator.swift; sourceTree = "<group>"; };
+		A1CA8CAD28A39CAF00C40642 /* UserSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSceneDIContainer.swift; sourceTree = "<group>"; };
+		A1CA8CAF28A39FB600C40642 /* UserListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		A1CC0C5128A37C1F00C7D4B7 /* GithubUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CC0C5428A37C1F00C7D4B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1CC0C5628A37C1F00C7D4B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1CC0C5828A37C1F00C7D4B7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A1CC0C5D28A37C2100C7D4B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1CC0C6028A37C2100C7D4B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A1CC0C6228A37C2100C7D4B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +104,154 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A13B7F0028A394790079226D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC0C5428A37C1F00C7D4B7 /* AppDelegate.swift */,
+				A1CC0C5628A37C1F00C7D4B7 /* SceneDelegate.swift */,
+				A13B7F1128A396520079226D /* AppCoordinator.swift */,
+				A13B7F0D28A395E10079226D /* DIContainer */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A13B7F0128A394840079226D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC0C5D28A37C2100C7D4B7 /* Assets.xcassets */,
+				A1CC0C5F28A37C2100C7D4B7 /* LaunchScreen.storyboard */,
+				A1CC0C6228A37C2100C7D4B7 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A13B7F0228A394D30079226D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F0528A3956E0079226D /* Coordinators */,
+				A13B7F0728A3958C0079226D /* UserScenes */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A13B7F0328A394F70079226D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F0828A3959C0079226D /* Entities */,
+				A13B7F0928A395A00079226D /* UseCases */,
+				A13B7F0A28A395AC0079226D /* RepositoryInterfaces */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A13B7F0428A394FA0079226D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F0C28A395CA0079226D /* Repositories */,
+				A13B7F0B28A395C10079226D /* Storages */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A13B7F0528A3956E0079226D /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CAB28A39BDC00C40642 /* UserListViewCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		A13B7F0728A3958C0079226D /* UserScenes */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1328A397E00079226D /* UserList */,
+			);
+			path = UserScenes;
+			sourceTree = "<group>";
+		};
+		A13B7F0828A3959C0079226D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1A28A398750079226D /* User.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		A13B7F0928A395A00079226D /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1C28A398C70079226D /* UserUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		A13B7F0A28A395AC0079226D /* RepositoryInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CA528A39B3400C40642 /* UserRepositoriable.swift */,
+			);
+			path = RepositoryInterfaces;
+			sourceTree = "<group>";
+		};
+		A13B7F0B28A395C10079226D /* Storages */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CA928A39B8A00C40642 /* UserStorage.swift */,
+			);
+			path = Storages;
+			sourceTree = "<group>";
+		};
+		A13B7F0C28A395CA0079226D /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CA728A39B4D00C40642 /* UserRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		A13B7F0D28A395E10079226D /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F0F28A395FE0079226D /* AppDIContainer.swift */,
+				A13B7F0E28A395EC0079226D /* UserScene */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		A13B7F0E28A395EC0079226D /* UserScene */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CAD28A39CAF00C40642 /* UserSceneDIContainer.swift */,
+			);
+			path = UserScene;
+			sourceTree = "<group>";
+		};
+		A13B7F1328A397E00079226D /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1528A397F30079226D /* View */,
+				A13B7F1428A397ED0079226D /* ViewModel */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
+		A13B7F1428A397ED0079226D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1628A397FF0079226D /* UserListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A13B7F1528A397F30079226D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A13B7F1828A3981B0079226D /* UserListViewController.swift */,
+				A1CA8CAF28A39FB600C40642 /* UserListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A1CC0C4828A37C1F00C7D4B7 = {
 			isa = PBXGroup;
 			children = (
@@ -105,12 +275,11 @@
 		A1CC0C5328A37C1F00C7D4B7 /* GithubUsers */ = {
 			isa = PBXGroup;
 			children = (
-				A1CC0C5428A37C1F00C7D4B7 /* AppDelegate.swift */,
-				A1CC0C5628A37C1F00C7D4B7 /* SceneDelegate.swift */,
-				A1CC0C5828A37C1F00C7D4B7 /* ViewController.swift */,
-				A1CC0C5D28A37C2100C7D4B7 /* Assets.xcassets */,
-				A1CC0C5F28A37C2100C7D4B7 /* LaunchScreen.storyboard */,
-				A1CC0C6228A37C2100C7D4B7 /* Info.plist */,
+				A13B7F0028A394790079226D /* Application */,
+				A13B7F0228A394D30079226D /* Presentation */,
+				A13B7F0328A394F70079226D /* Domain */,
+				A13B7F0428A394FA0079226D /* Data */,
+				A13B7F0128A394840079226D /* Resources */,
 			);
 			path = GithubUsers;
 			sourceTree = "<group>";
@@ -272,9 +441,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1CC0C5928A37C1F00C7D4B7 /* ViewController.swift in Sources */,
+				A1CA8CAE28A39CAF00C40642 /* UserSceneDIContainer.swift in Sources */,
+				A13B7F1028A395FE0079226D /* AppDIContainer.swift in Sources */,
+				A13B7F1228A396520079226D /* AppCoordinator.swift in Sources */,
 				A1CC0C5528A37C1F00C7D4B7 /* AppDelegate.swift in Sources */,
+				A1CA8CAA28A39B8A00C40642 /* UserStorage.swift in Sources */,
+				A13B7F1728A397FF0079226D /* UserListViewModel.swift in Sources */,
+				A13B7F1D28A398C70079226D /* UserUseCase.swift in Sources */,
+				A1CA8CB028A39FB600C40642 /* UserListView.swift in Sources */,
+				A1CA8CAC28A39BDC00C40642 /* UserListViewCoordinator.swift in Sources */,
 				A1CC0C5728A37C1F00C7D4B7 /* SceneDelegate.swift in Sources */,
+				A13B7F1928A3981B0079226D /* UserListViewController.swift in Sources */,
+				A13B7F1B28A398750079226D /* User.swift in Sources */,
+				A1CA8CA828A39B4D00C40642 /* UserRepository.swift in Sources */,
+				A1CA8CA628A39B3400C40642 /* UserRepositoriable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +552,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -426,7 +606,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -445,7 +625,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8C8Y42HXM4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubUsers/Info.plist;
+				INFOPLIST_FILE = GithubUsers/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -473,7 +653,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8C8Y42HXM4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GithubUsers/Info.plist;
+				INFOPLIST_FILE = GithubUsers/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
