@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core",
+      "state" : {
+        "revision" : "2b8def17bb8e0cddbcc754db6b6466b8487feebf",
+        "version" : "12.5.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift",
+      "state" : {
+        "revision" : "a107f5660b0b6067700923af7f107b6af73c546b",
+        "version" : "10.28.5"
+      }
+    },
+    {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift",

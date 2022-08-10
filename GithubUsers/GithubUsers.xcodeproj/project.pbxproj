@@ -19,6 +19,8 @@
 		A1CA8CAC28A39BDC00C40642 /* UserListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAB28A39BDC00C40642 /* UserListViewCoordinator.swift */; };
 		A1CA8CAE28A39CAF00C40642 /* UserSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAD28A39CAF00C40642 /* UserSceneDIContainer.swift */; };
 		A1CA8CB028A39FB600C40642 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CAF28A39FB600C40642 /* UserListView.swift */; };
+		A1CA8CB328A3DC7C00C40642 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A1CA8CB228A3DC7C00C40642 /* Realm */; };
+		A1CA8CB528A3DC7C00C40642 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A1CA8CB428A3DC7C00C40642 /* RealmSwift */; };
 		A1CC0C5528A37C1F00C7D4B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C5428A37C1F00C7D4B7 /* AppDelegate.swift */; };
 		A1CC0C5728A37C1F00C7D4B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC0C5628A37C1F00C7D4B7 /* SceneDelegate.swift */; };
 		A1CC0C5E28A37C2100C7D4B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CC0C5D28A37C2100C7D4B7 /* Assets.xcassets */; };
@@ -80,10 +82,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CA8CB528A3DC7C00C40642 /* RealmSwift in Frameworks */,
 				A1CC0C8828A386B900C7D4B7 /* RxRelay-Dynamic in Frameworks */,
 				A1CC0C8A28A386B900C7D4B7 /* RxSwift-Dynamic in Frameworks */,
 				A1CC0C8628A386B900C7D4B7 /* RxCocoa-Dynamic in Frameworks */,
 				A1CC0C8D28A386EE00C7D4B7 /* SnapKit-Dynamic in Frameworks */,
+				A1CA8CB328A3DC7C00C40642 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +326,8 @@
 				A1CC0C8728A386B900C7D4B7 /* RxRelay-Dynamic */,
 				A1CC0C8928A386B900C7D4B7 /* RxSwift-Dynamic */,
 				A1CC0C8C28A386EE00C7D4B7 /* SnapKit-Dynamic */,
+				A1CA8CB228A3DC7C00C40642 /* Realm */,
+				A1CA8CB428A3DC7C00C40642 /* RealmSwift */,
 			);
 			productName = GithubUsers;
 			productReference = A1CC0C5128A37C1F00C7D4B7 /* GithubUsers.app */;
@@ -398,6 +404,7 @@
 			packageReferences = (
 				A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				A1CC0C8B28A386EE00C7D4B7 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A1CA8CB128A3DC7C00C40642 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = A1CC0C5228A37C1F00C7D4B7 /* Products */;
 			projectDirPath = "";
@@ -790,6 +797,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A1CA8CB128A3DC7C00C40642 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 10.28.5;
+			};
+		};
 		A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -809,6 +824,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A1CA8CB228A3DC7C00C40642 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CA8CB128A3DC7C00C40642 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		A1CA8CB428A3DC7C00C40642 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1CA8CB128A3DC7C00C40642 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		A1CC0C8528A386B900C7D4B7 /* RxCocoa-Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A1CC0C8428A386B900C7D4B7 /* XCRemoteSwiftPackageReference "RxSwift" */;
