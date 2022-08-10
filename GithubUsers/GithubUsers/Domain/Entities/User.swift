@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Hashable {
     let login: String
     let id: Int
     let avatarURL: String
@@ -15,3 +15,17 @@ struct User {
     let followingURL: String
     let isFollowing: Bool
 }
+
+#if DEBUG
+extension User {
+    static func sampleData() -> [User] {
+        var tempData = [User]()
+        
+        for index in 0 ..< 10 {
+            tempData.append(User(login: "임시 사용자 이름\(index)", id: index, avatarURL: "", followersURL: "", followingURL: "", isFollowing: index % 2 == 0 ? true : false))
+        }
+        
+        return tempData
+    }
+}
+#endif
