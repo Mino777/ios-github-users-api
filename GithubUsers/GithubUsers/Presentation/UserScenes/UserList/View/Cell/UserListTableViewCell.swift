@@ -14,7 +14,11 @@ import SnapKit
 
 final class UserListTableViewCell: UITableViewCell {
     private var viewModel: UserListCellViewModelable?
-    private let disposeBag = DisposeBag()
+    private(set) var disposeBag = DisposeBag()
+    
+    var didTapFollowButton: Observable<Void> {
+        return followButton.rx.tap.asObservable()
+    }
     
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
@@ -43,7 +47,7 @@ final class UserListTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let followButton: UIButton = {
+    let followButton: UIButton = {
         let button = UIButton()
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
@@ -57,6 +61,12 @@ final class UserListTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        avatarImageView.image = nil
+        disposeBag = DisposeBag()
     }
     
     private func setupView() {
@@ -87,6 +97,14 @@ final class UserListTableViewCell: UITableViewCell {
     
     func bind(_ viewModel: UserListCellViewModelable) {
         self.viewModel = viewModel
+        
+        followButton.rx.tap
+            .asDriver()
+            .throttle(.seconds(1))
+            .drive(with: self, onNext: { wself, _ in
+                wself.changeButtonState(!wself.followButton.isSelected)
+                wself.viewModel?.didTapFollowButton()
+            }).disposed(by: disposeBag)
         
         viewModel.userImageEvent
             .map { UIImage(systemName: $0) }

@@ -60,8 +60,18 @@ final class UserListView: UIView {
                 for: indexPath
             ) as? UserListTableViewCell
             
-            let viewModel = UserListCellViewModel(user: itemIdentifier)
-            cell?.bind(viewModel)
+            let cellViewModel = UserListCellViewModel(user: itemIdentifier)
+            
+            cell?.bind(cellViewModel)
+            cell?.didTapFollowButton
+                .withUnretained(self)
+                .subscribe { wself, _ in
+                    wself.viewModel.didTapFollowButton(
+                        user: itemIdentifier,
+                        isFollowing: cellViewModel.user.isFollowing
+                    )
+                }
+                .disposed(by: cell?.disposeBag ?? DisposeBag())
             
             return cell
         }
@@ -78,8 +88,10 @@ final class UserListView: UIView {
     
     private func applySnapshot(items: [User]) {
         var snapshot = Snapshot()
-        snapshot.appendSections([.zero])
-        snapshot.appendItems(items)
-        dataSource?.apply(snapshot)
+        DispatchQueue.main.async {
+            snapshot.appendSections([.zero])
+            snapshot.appendItems(items)
+            self.dataSource?.apply(snapshot)
+        }
     }
 }

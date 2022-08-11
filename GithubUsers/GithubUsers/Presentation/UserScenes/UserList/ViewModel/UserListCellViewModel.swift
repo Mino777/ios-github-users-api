@@ -10,6 +10,7 @@ import RxRelay
 
 protocol UserListCellViewModelInput {
     func cellDidBind()
+    func didTapFollowButton()
 }
 
 protocol UserListCellViewModelOutput {
@@ -21,7 +22,7 @@ protocol UserListCellViewModelOutput {
 protocol UserListCellViewModelable: UserListCellViewModelInput, UserListCellViewModelOutput {}
 
 final class UserListCellViewModel: UserListCellViewModelable {
-    private let user: User
+    private(set) var user: User
     
     let userImageEvent = BehaviorRelay<String>(value: "")
     let userNameEvent = BehaviorRelay<String>(value: "")
@@ -36,6 +37,11 @@ extension UserListCellViewModel {
     func cellDidBind() {
         userImageEvent.accept("swift")
         userNameEvent.accept(user.login)
+        userFollowingEvent.accept(user.isFollowing)
+    }
+    
+    func didTapFollowButton() {
+        user.isFollowing.toggle()
         userFollowingEvent.accept(user.isFollowing)
     }
 }

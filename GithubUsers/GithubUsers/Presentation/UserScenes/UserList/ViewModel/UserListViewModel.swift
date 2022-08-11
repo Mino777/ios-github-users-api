@@ -14,6 +14,7 @@ enum UserListViewModelState {
 
 protocol UserListViewModelInput {
     func requestUserList()
+    func didTapFollowButton(user: User, isFollowing: Bool)
 }
 
 protocol UserListViewModelOutput {
@@ -42,5 +43,13 @@ extension UserListViewModel {
                 print(error)
             }
             .disposed(by: disposeBag)
+    }
+    
+    func didTapFollowButton(user: User, isFollowing: Bool) {
+        if isFollowing {
+            useCase.create(user)
+        } else {
+            useCase.delete(user)
+        }
     }
 }
