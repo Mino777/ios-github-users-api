@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol NetworkServiceable: AnyObject {
-    func request(endpoint: Endpoint) -> Single<Data>
+    func request(endpoint: Endpoint) -> Observable<Data>
 }
 
 final class NetworkService: NetworkServiceable {
@@ -20,7 +20,7 @@ final class NetworkService: NetworkServiceable {
         self.urlSession = urlSession
     }
     
-    func request(endpoint: Endpoint) -> Single<Data> {
+    func request(endpoint: Endpoint) -> Observable<Data> {
         return Single<Data>.create { [weak self] single in
             guard let urlRequest = try? endpoint.create() else {
                 single(.failure(NetworkServiceError.createURLRequestFailure))
@@ -54,6 +54,6 @@ final class NetworkService: NetworkServiceable {
                 task?.suspend()
                 task?.cancel()
             }
-        }
+        }.asObservable()
     }
 }
