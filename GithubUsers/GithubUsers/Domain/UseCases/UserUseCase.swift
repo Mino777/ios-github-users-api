@@ -24,7 +24,23 @@ final class UserUseCase {
 
 extension UserUseCase: UserUseCaseable {
     func requestUserList() -> Observable<[User]> {
-        userRepository.requestUserList(EndpointStorage.users.endPoint)
+        return Observable.zip(
+            userRepository.requestUserList(EndpointStorage.users.endPoint),
+            userRepository.followingObservable()
+        )
+        .map { users, followingUsers in
+            let followingUsersId = followingUsers.map { $0.id }
+            return users.map {
+                return User(
+                    login: $0.login,
+                    id: $0.id,
+                    avatarURL: $0.avatarURL,
+                    followersURL: $0.followersURL,
+                    followingURL: $0.followingURL,
+                    isFollowing: followingUsersId.contains($0.id)
+                )
+            }
+        }
     }
     
     func create(_ item: User) {

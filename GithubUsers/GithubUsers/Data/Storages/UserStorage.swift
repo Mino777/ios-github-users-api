@@ -38,6 +38,7 @@ enum UserStorageState {
 protocol UserStorageable: AnyObject {
     func create(_ item: User)
     var followingUsersSubject: BehaviorSubject<UserStorageState> { get }
+    func followingObservable() -> Observable<[User]>
     func update(_ item: User)
     func delete(_ item: User)
 }
@@ -47,14 +48,14 @@ final class UserStorage: UserStorageable {
     private let followingUsers = BehaviorSubject<UserStorageState>(value: .success(items: []))
     
     init() {
-        followingUsers.onNext(.success(items: readFollowingUsers()))
+        followingUsers.onNext(.success(items: readAll()))
     }
     
     func create(_ item: User) {
         write(.createFail) { [weak self] in
             guard let self = self else { return }
             self.realm.add(self.transferToTodoRealm(with: item))
-            self.followingUsers.onNext(.success(items: self.readFollowingUsers()))
+            self.followingUsers.onNext(.success(items: self.readAll()))
         }
     }
 
@@ -62,11 +63,25 @@ final class UserStorage: UserStorageable {
         return followingUsers
     }
     
+    func followingObservable() -> Observable<[User]> {
+        return Observable.create { [weak self] emitter in
+            guard let users = self?.readAll() else {
+                emitter.onError(StorageError.readFail)
+                return Disposables.create()
+            }
+            
+            emitter.onNext(users)
+            emitter.onCompleted()
+            
+            return Disposables.create()
+        }
+    }
+    
     func update(_ item: User) {
         write(.updateFail) { [weak self] in
             guard let self = self else { return }
             self.realm.add(self.transferToTodoRealm(with: item), update: .modified)
-            self.followingUsers.onNext(.success(items: self.readFollowingUsers()))
+            self.followingUsers.onNext(.success(items: self.readAll()))
         }
     }
     
@@ -76,7 +91,7 @@ final class UserStorage: UserStorageable {
                 return
             }
             self.realm.delete(realmModel)
-            self.followingUsers.onNext(.success(items: self.readFollowingUsers()))
+            self.followingUsers.onNext(.success(items: self.readAll()))
         }
     }
     
@@ -88,10 +103,9 @@ final class UserStorage: UserStorageable {
         }
     }
     
-    private func readFollowingUsers() -> [User] {
+    private func readAll() -> [User] {
         return realm
             .objects(UserRealm.self)
-            .where { $0.isFollowing == true }
             .map(transferToTodo)
     }
     

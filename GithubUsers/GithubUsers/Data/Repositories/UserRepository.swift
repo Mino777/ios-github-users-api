@@ -32,6 +32,10 @@ extension UserRepository: UserRepositoriable {
             }
     }
     
+    func followingObservable() -> Observable<[User]> {
+        userStorage.followingObservable()
+    }
+    
     func create(_ item: User) {
         userStorage.create(item)
     }

@@ -46,10 +46,19 @@ extension UserListViewModel {
     }
     
     func didTapFollowButton(user: User, isFollowing: Bool) {
+        let updatedUser = User(
+            login: user.login,
+            id: user.id,
+            avatarURL: user.avatarURL,
+            followersURL: user.followersURL,
+            followingURL: user.followingURL,
+            isFollowing: isFollowing
+        )
+        
         if isFollowing {
-            useCase.create(user)
+            useCase.create(updatedUser)
         } else {
-            useCase.delete(user)
+            useCase.delete(updatedUser)
         }
     }
 }
