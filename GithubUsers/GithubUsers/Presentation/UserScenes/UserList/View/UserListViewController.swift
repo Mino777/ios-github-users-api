@@ -8,11 +8,13 @@
 import UIKit
 
 import SnapKit
+import RxSwift
 
 final class UserListViewController: UIViewController {
     private lazy var userListView = UserListView(viewModel: viewModel)
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
+    private let disposeBag = DisposeBag()
     
     init(viewModel: UserListViewModelable) {
         self.viewModel = viewModel
@@ -30,6 +32,7 @@ final class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.requestUserList()
     }
 }
 

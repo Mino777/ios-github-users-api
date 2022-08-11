@@ -13,7 +13,7 @@ enum UserListViewModelState {
 }
 
 protocol UserListViewModelInput {
-
+    func requestUserList()
 }
 
 protocol UserListViewModelOutput {
@@ -24,9 +24,23 @@ protocol UserListViewModelable: UserListViewModelInput, UserListViewModelOutput 
 
 final class UserListViewModel: UserListViewModelable {
     private let useCase: UserUseCaseable
-    let users = BehaviorRelay<[User]>(value: User.sampleData())
+    private let disposeBag = DisposeBag()
+    let users = BehaviorRelay<[User]>(value: [])
     
     init(useCase: UserUseCaseable) {
         self.useCase = useCase
+    }
+}
+
+extension UserListViewModel {
+    func requestUserList() {
+        useCase.requestUserList()
+            .withUnretained(self)
+            .subscribe { wself, result in
+                wself.users.accept(result)
+            } onError: { error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
     }
 }

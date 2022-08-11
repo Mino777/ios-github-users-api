@@ -76,7 +76,6 @@ final class UserListTableViewCell: UITableViewCell {
         }
         
         avatarImageView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(10)
             $0.height.equalTo(containerStackView.snp.height)
             $0.width.equalTo(avatarImageView.snp.height)
         }
