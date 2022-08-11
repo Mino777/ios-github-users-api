@@ -30,16 +30,16 @@ enum StorageError: LocalizedError {
     }
 }
 
+enum UserStorageState {
+    case success(items: [User])
+    case failure(error: StorageError)
+}
+
 protocol UserStorageable: AnyObject {
     func create(_ item: User)
     var followingUsersSubject: BehaviorSubject<UserStorageState> { get }
     func update(_ item: User)
     func delete(_ item: User)
-}
-
-enum UserStorageState {
-    case success(items: [User])
-    case failure(error: StorageError)
 }
 
 final class UserStorage: UserStorageable {

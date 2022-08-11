@@ -27,7 +27,20 @@ extension UserRepository: UserRepositoriable {
                 let users = decodedData?.map {
                     $0.toDomain()
                 }
+                                
                 return users ?? []
             }
+    }
+    
+    func create(_ item: User) {
+        userStorage.create(item)
+    }
+    
+    var followingUsersSubject: BehaviorSubject<UserStorageState> {
+        userStorage.followingUsersSubject
+    }
+    
+    func delete(_ item: User) {
+        userStorage.delete(item)
     }
 }
