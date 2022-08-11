@@ -8,7 +8,6 @@
 import UIKit
 
 protocol UserSceneDIContainerable: AnyObject {
-    
     func makeUserListViewController() -> UserListViewController
     func makeUserListViewCoordinator(navigationController: UINavigationController) -> UserListViewCoordinator
 }

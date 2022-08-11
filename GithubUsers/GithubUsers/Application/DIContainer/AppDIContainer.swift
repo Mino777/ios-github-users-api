@@ -6,7 +6,6 @@
 //
 
 protocol AppDIContainerable {
-    
     func makeUserSceneDIContainer() -> UserSceneDIContainer
 }
 

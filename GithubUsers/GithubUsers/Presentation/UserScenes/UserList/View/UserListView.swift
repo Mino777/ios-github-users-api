@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import RxSwift
 
 final class UserListView: UIView {
@@ -18,7 +19,7 @@ final class UserListView: UIView {
     
     private let disposeBag = DisposeBag()
 
-    let userListTableView: UITableView = {
+    private let userListTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: UserListTableViewCell.identifier)
         return tableView

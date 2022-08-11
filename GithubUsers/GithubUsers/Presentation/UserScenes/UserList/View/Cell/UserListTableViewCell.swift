@@ -20,7 +20,6 @@ final class UserListTableViewCell: UITableViewCell {
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
         stackView.spacing = 10
         return stackView
     }()
@@ -47,8 +46,6 @@ final class UserListTableViewCell: UITableViewCell {
     
     private let followButton: UIButton = {
         let button = UIButton()
-        button.setTitle("팔로우", for: .normal)
-        button.setTitleColor(.red, for: .normal)
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         return button
@@ -80,6 +77,7 @@ final class UserListTableViewCell: UITableViewCell {
         }
         
         avatarImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(10)
             $0.height.equalTo(containerStackView.snp.height)
             $0.width.equalTo(avatarImageView.snp.height)
         }
@@ -102,16 +100,24 @@ final class UserListTableViewCell: UITableViewCell {
             .disposed(by: disposeBag)
         
         viewModel.userFollowingEvent
-            .map {
-                if $0 {
-                    return UIColor.label
-                } else {
-                    return UIColor.white
-                }
+            .withUnretained(self)
+            .subscribe { wself, state in
+                wself.changeButtonState(state)
             }
-            .bind(to: followButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
         viewModel.cellDidBind()
+    }
+    
+    private func changeButtonState(_ state: Bool) {
+        if state {
+            followButton.setTitle("언팔로우", for: .normal)
+            followButton.setTitleColor(.white, for: .normal)
+            followButton.backgroundColor = .black
+        } else {
+            followButton.setTitle("팔로우", for: .normal)
+            followButton.setTitleColor(.black, for: .normal)
+            followButton.backgroundColor = .white
+        }
     }
 }
