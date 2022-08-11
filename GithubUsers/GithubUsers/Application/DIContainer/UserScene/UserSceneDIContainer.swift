@@ -15,6 +15,7 @@ protocol UserSceneDIContainerable: AnyObject {
 final class UserSceneDIContainer {
     struct Dependencies {
         unowned let userStorage: UserStorageable
+        unowned let networkService: NetworkServiceable
     }
     
     private let dependencies: Dependencies
@@ -47,6 +48,9 @@ extension UserSceneDIContainer: UserSceneDIContainerable {
     }
     
     private func makeUserRepository() -> UserRepositoriable {
-        return UserRepository(userStorage: dependencies.userStorage)
+        return UserRepository(
+            userStorage: dependencies.userStorage,
+            networkService: dependencies.networkService
+        )
     }
 }

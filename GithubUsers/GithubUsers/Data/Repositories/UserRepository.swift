@@ -7,9 +7,11 @@
 
 final class UserRepository {
     private let userStorage: UserStorageable
+    private let networkService: NetworkServiceable
     
-    init(userStorage: UserStorageable) {
+    init(userStorage: UserStorageable, networkService: NetworkServiceable) {
         self.userStorage = userStorage
+        self.networkService = networkService
     }
 }
 

@@ -9,14 +9,14 @@ import Foundation
 
 import RxSwift
 
-protocol NetworkServiceable {
+protocol NetworkServiceable: AnyObject {
     func request(endpoint: Endpoint) -> Single<Data>
 }
 
 final class NetworkService: NetworkServiceable {
     private let urlSession: URLSession
     
-    init(urlSession: URLSession) {
+    init(urlSession: URLSession = URLSession.shared) {
         self.urlSession = urlSession
     }
     

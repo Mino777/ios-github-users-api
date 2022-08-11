@@ -11,10 +11,14 @@ protocol AppDIContainerable {
 
 final class AppDIContainer: AppDIContainerable {
     private let userStorage = UserStorage()
+    private let networkService = NetworkService()
     
     func makeUserSceneDIContainer() -> UserSceneDIContainer {
         return UserSceneDIContainer(
-            dependencies: .init(userStorage: userStorage)
+            dependencies: .init(
+                userStorage: userStorage,
+                networkService: networkService
+            )
         )
     }
 }
