@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 final class UserListViewController: UIViewController {
-
     private lazy var userListView = UserListView(viewModel: viewModel)
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
@@ -35,7 +34,6 @@ final class UserListViewController: UIViewController {
 }
 
 extension UserListViewController {
-    
     private func setupView() {
         view.backgroundColor = .systemBackground
         

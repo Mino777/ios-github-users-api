@@ -23,7 +23,6 @@ protocol UserListViewModelOutput {
 protocol UserListViewModelable: UserListViewModelInput, UserListViewModelOutput {}
 
 final class UserListViewModel: UserListViewModelable {
-    
     private let useCase: UserUseCaseable
     let users = BehaviorRelay<[User]>(value: User.sampleData())
     

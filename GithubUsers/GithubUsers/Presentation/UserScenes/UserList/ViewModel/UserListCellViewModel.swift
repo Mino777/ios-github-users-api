@@ -21,7 +21,6 @@ protocol UserListCellViewModelOutput {
 protocol UserListCellViewModelable: UserListCellViewModelInput, UserListCellViewModelOutput {}
 
 final class UserListCellViewModel: UserListCellViewModelable {
-    
     private let user: User
     
     let userImageEvent = BehaviorRelay<String>(value: "")

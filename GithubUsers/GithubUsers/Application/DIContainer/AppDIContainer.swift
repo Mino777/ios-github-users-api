@@ -10,7 +10,6 @@ protocol AppDIContainerable {
 }
 
 final class AppDIContainer: AppDIContainerable {
-    
     private let userStorage = UserStorage()
     
     func makeUserSceneDIContainer() -> UserSceneDIContainer {

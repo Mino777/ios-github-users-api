@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 
 final class UserListView: UIView {
-    
     private typealias DataSource = UITableViewDiffableDataSource<Int, User>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, User>
 

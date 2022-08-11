@@ -13,7 +13,6 @@ protocol UserSceneDIContainerable: AnyObject {
 }
 
 final class UserSceneDIContainer {
-    
     struct Dependencies {
         unowned let userStorage: UserStorageable
     }
@@ -26,7 +25,6 @@ final class UserSceneDIContainer {
 }
 
 extension UserSceneDIContainer: UserSceneDIContainerable {
-    
     func makeUserListViewController() -> UserListViewController {
         return UserListViewController(viewModel: makeUserListViewModel())
     }
