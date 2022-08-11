@@ -13,7 +13,7 @@ struct User: Hashable {
     let avatarURL: String
     let followersURL: String
     let followingURL: String
-    let isFollowing: Bool
+    var isFollowing: Bool
 }
 
 #if DEBUG

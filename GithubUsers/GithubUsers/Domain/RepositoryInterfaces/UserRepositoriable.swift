@@ -9,4 +9,7 @@ import RxSwift
 
 protocol UserRepositoriable {
     func requestUserList(_ endpoint: Endpoint) -> Observable<[User]>
+    func create(_ item: User)
+    var followingUsersSubject: BehaviorSubject<UserStorageState> { get }
+    func delete(_ item: User)
 }
