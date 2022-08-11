@@ -22,6 +22,7 @@
 		A1C6640228A4DBA700B0980B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6640128A4DBA700B0980B /* NetworkService.swift */; };
 		A1C6640428A4DCCB00B0980B /* EndpointStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6640328A4DCCB00B0980B /* EndpointStorage.swift */; };
 		A1C6640628A4E40600B0980B /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6640528A4E40600B0980B /* NetworkServiceError.swift */; };
+		A1C6640828A5263900B0980B /* UserRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6640728A5263900B0980B /* UserRealm.swift */; };
 		A1CA8CA628A39B3400C40642 /* UserRepositoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA528A39B3400C40642 /* UserRepositoriable.swift */; };
 		A1CA8CA828A39B4D00C40642 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA728A39B4D00C40642 /* UserRepository.swift */; };
 		A1CA8CAA28A39B8A00C40642 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA8CA928A39B8A00C40642 /* UserStorage.swift */; };
@@ -73,6 +74,7 @@
 		A1C6640128A4DBA700B0980B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		A1C6640328A4DCCB00B0980B /* EndpointStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStorage.swift; sourceTree = "<group>"; };
 		A1C6640528A4E40600B0980B /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
+		A1C6640728A5263900B0980B /* UserRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRealm.swift; sourceTree = "<group>"; };
 		A1CA8CA528A39B3400C40642 /* UserRepositoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoriable.swift; sourceTree = "<group>"; };
 		A1CA8CA728A39B4D00C40642 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		A1CA8CA928A39B8A00C40642 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
@@ -172,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				A13B7F0C28A395CA0079226D /* Repositories */,
-				A1CA8CB628A3E76600C40642 /* ResponseDTO */,
+				A1CA8CB628A3E76600C40642 /* ResponseModel */,
 				A13B7F0B28A395C10079226D /* Storages */,
 				A1C663F828A4D80900B0980B /* Network */,
 			);
@@ -308,12 +310,29 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		A1CA8CB628A3E76600C40642 /* ResponseDTO */ = {
+		A1C6640928A527A000B0980B /* DTO */ = {
 			isa = PBXGroup;
 			children = (
 				A1CA8CB728A3E7BA00C40642 /* UserResponseDTO.swift */,
 			);
-			path = ResponseDTO;
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		A1C6640A28A527A400B0980B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				A1C6640728A5263900B0980B /* UserRealm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		A1CA8CB628A3E76600C40642 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				A1C6640A28A527A400B0980B /* Realm */,
+				A1C6640928A527A000B0980B /* DTO */,
+			);
+			path = ResponseModel;
 			sourceTree = "<group>";
 		};
 		A1CA8CB928A3F30300C40642 /* Cell */ = {
@@ -558,6 +577,7 @@
 				A1CA8CA828A39B4D00C40642 /* UserRepository.swift in Sources */,
 				A1CA8CA628A39B3400C40642 /* UserRepositoriable.swift in Sources */,
 				A1CA8CBF28A3F37000C40642 /* UITableViewCell.swift in Sources */,
+				A1C6640828A5263900B0980B /* UserRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
