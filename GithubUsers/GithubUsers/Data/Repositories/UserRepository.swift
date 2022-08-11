@@ -6,7 +6,6 @@
 //
 
 final class UserRepository {
-    
     private let userStorage: UserStorageable
     
     init(userStorage: UserStorageable) {

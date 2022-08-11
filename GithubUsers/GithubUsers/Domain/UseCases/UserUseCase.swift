@@ -10,7 +10,6 @@ protocol UserUseCaseable {
 }
 
 final class UserUseCase {
-    
     private let userRepository: UserRepositoriable
     
     init(userRepository: UserRepositoriable) {

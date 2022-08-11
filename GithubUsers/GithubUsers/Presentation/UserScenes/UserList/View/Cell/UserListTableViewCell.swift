@@ -13,7 +13,6 @@ import RxCocoa
 import SnapKit
 
 final class UserListTableViewCell: UITableViewCell {
-    
     private var viewModel: UserListCellViewModelable?
     private let disposeBag = DisposeBag()
     

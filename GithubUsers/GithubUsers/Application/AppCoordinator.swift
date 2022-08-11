@@ -23,7 +23,6 @@ extension Coordinator {
 }
 
 final class AppCoordinator: Coordinator {
-    
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
