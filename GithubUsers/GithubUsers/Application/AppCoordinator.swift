@@ -8,7 +8,6 @@
 import UIKit
 
 protocol Coordinator: AnyObject {
-    
     var navigationController: UINavigationController? { get set }
     var parentCoordinator: Coordinator? { get set }
     var childCoordinators: [Coordinator] { get set }
@@ -17,14 +16,12 @@ protocol Coordinator: AnyObject {
 }
 
 extension Coordinator {
-    
     func removeChild(_ coordinator: Coordinator) {
         childCoordinators.removeAll(where: { $0 === coordinator })
     }
 }
 
 final class AppCoordinator: Coordinator {
-    
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []

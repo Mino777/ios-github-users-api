@@ -8,15 +8,14 @@
 import UIKit
 
 protocol UserSceneDIContainerable: AnyObject {
-    
     func makeUserListViewController() -> UserListViewController
     func makeUserListViewCoordinator(navigationController: UINavigationController) -> UserListViewCoordinator
 }
 
 final class UserSceneDIContainer {
-    
     struct Dependencies {
         unowned let userStorage: UserStorageable
+        unowned let networkService: NetworkServiceable
     }
     
     private let dependencies: Dependencies
@@ -27,7 +26,6 @@ final class UserSceneDIContainer {
 }
 
 extension UserSceneDIContainer: UserSceneDIContainerable {
-    
     func makeUserListViewController() -> UserListViewController {
         return UserListViewController(viewModel: makeUserListViewModel())
     }
@@ -50,6 +48,9 @@ extension UserSceneDIContainer: UserSceneDIContainerable {
     }
     
     private func makeUserRepository() -> UserRepositoriable {
-        return UserRepository(userStorage: dependencies.userStorage)
+        return UserRepository(
+            userStorage: dependencies.userStorage,
+            networkService: dependencies.networkService
+        )
     }
 }

@@ -8,12 +8,15 @@
 import UIKit
 
 import SnapKit
+import RxSwift
 
-final class UserListViewController: UIViewController {
-
-    private lazy var userListView = UserListView()
+final class UserListViewController: UIViewController, Alertable {
+    private lazy var userListView = UserListView(viewModel: viewModel)
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
+    private let disposeBag = DisposeBag()
+    
+    private let refreshControl = UIRefreshControl()
     
     init(viewModel: UserListViewModelable) {
         self.viewModel = viewModel
@@ -31,14 +34,23 @@ final class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
+        viewModel.requestUserList()
     }
 }
 
 extension UserListViewController {
-    
     private func setupView() {
+        setupViewAttribute()
         addSubviews()
         setupConstraint()
+        setupNavigationBar()
+    }
+    
+    private func setupViewAttribute() {
+        view.backgroundColor = .systemBackground
+        userListView.userListTableView.refreshControl = refreshControl
+        refreshControl.attributedTitle = NSAttributedString(string: "새로고침")
     }
     
     private func addSubviews() {
@@ -49,5 +61,47 @@ extension UserListViewController {
         userListView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    private func setupNavigationBar() {
+        title = "사용자 리스트"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "내 팔로잉", style: .plain, target: self, action: nil)
+    }
+}
+
+extension UserListViewController {
+    private func bind() {
+        viewModel.state
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { wself, state in
+                switch state {
+                case .showErrorAlertEvent(let error):
+                    wself.showErrorAlertWithConfirmButton(error)
+                case .showMyFollowingView:
+                    wself.coordinator?.showMyFollowing()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .bind(with: self) { wself, _ in
+                wself.viewModel.refreshLoading.accept(true)
+                wself.viewModel.requestUserList()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.refreshLoading
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem?.rx.tap
+            .bind(with: self) { wself, _ in
+                wself.viewModel.showMyFollowingView()
+            }
+            .disposed(by: disposeBag)
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 
 final class UserListViewCoordinator: Coordinator {
-    
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
@@ -23,10 +22,13 @@ final class UserListViewCoordinator: Coordinator {
 }
 
 extension UserListViewCoordinator {
-    
     func start() {
         let userListViewController = dependencies.makeUserListViewController()
         userListViewController.coordinator = self
         self.navigationController?.pushViewController(userListViewController, animated: true)
+    }
+    
+    func showMyFollowing() {
+        print(#function)
     }
 }
