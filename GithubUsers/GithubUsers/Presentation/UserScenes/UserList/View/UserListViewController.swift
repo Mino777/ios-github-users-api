@@ -74,6 +74,7 @@ extension UserListViewController {
 extension UserListViewController {
     private func bind() {
         viewModel.state
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .subscribe { wself, state in
                 switch state {

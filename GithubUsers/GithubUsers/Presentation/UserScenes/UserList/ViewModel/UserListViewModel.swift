@@ -19,7 +19,6 @@ protocol UserListViewModelInput {
     func requestUserList()
     func didTapFollowButton(user: User, isFollowing: Bool)
     func showMyFollowingView()
-    
     var refreshLoading: PublishRelay<Bool> { get }
 }
 
