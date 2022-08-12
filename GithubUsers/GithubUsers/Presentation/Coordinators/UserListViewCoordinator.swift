@@ -12,7 +12,7 @@ final class UserListViewCoordinator: Coordinator {
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     
-    private unowned let dependencies: UserSceneDIContainerable
+    private let dependencies: UserSceneDIContainerable
     private weak var viewController: UserListViewController?
     
     init(navigationController: UINavigationController, dependencies: UserSceneDIContainerable) {
@@ -29,6 +29,16 @@ extension UserListViewCoordinator {
     }
     
     func showMyFollowing() {
-        print(#function)
+        guard let navigationController = navigationController else {
+            return
+        }
+        
+        let factory = dependencies.makeFollowingListViewFactory()
+        let sceneCoordinator = factory.makeFollowingListViewCoordinator(navigationController: navigationController)
+        
+        childCoordinators.append(sceneCoordinator)
+        sceneCoordinator.parentCoordinator = self
+        
+        sceneCoordinator.start()
     }
 }

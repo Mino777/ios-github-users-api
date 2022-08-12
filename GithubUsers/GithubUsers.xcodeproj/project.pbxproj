@@ -17,6 +17,11 @@
 		A13E593E28A644FA00789615 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E593D28A644FA00789615 /* ImageCacheManager.swift */; };
 		A13E594028A6467300789615 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E593F28A6467300789615 /* UIImageView.swift */; };
 		A13E594228A646E700789615 /* ExtensionSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594128A646E700789615 /* ExtensionSupport.swift */; };
+		A13E594728A67C0800789615 /* FollowingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594628A67C0800789615 /* FollowingListViewController.swift */; };
+		A13E594928A67C1200789615 /* FollowingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594828A67C1200789615 /* FollowingListViewModel.swift */; };
+		A13E594C28A6810900789615 /* UserListTableViewCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594B28A6810900789615 /* UserListTableViewCellView.swift */; };
+		A13E594E28A684C700789615 /* FollowingListViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594D28A684C700789615 /* FollowingListViewFactory.swift */; };
+		A13E595028A6859600789615 /* FollowingListViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E594F28A6859600789615 /* FollowingListViewCoordinator.swift */; };
 		A1C663F028A4C9B500B0980B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663EF28A4C9B500B0980B /* RxCocoa */; };
 		A1C663F228A4C9B500B0980B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663F128A4C9B500B0980B /* RxRelay */; };
 		A1C663F428A4C9B500B0980B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663F328A4C9B500B0980B /* RxSwift */; };
@@ -77,6 +82,11 @@
 		A13E593D28A644FA00789615 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		A13E593F28A6467300789615 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A13E594128A646E700789615 /* ExtensionSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionSupport.swift; sourceTree = "<group>"; };
+		A13E594628A67C0800789615 /* FollowingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewController.swift; sourceTree = "<group>"; };
+		A13E594828A67C1200789615 /* FollowingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewModel.swift; sourceTree = "<group>"; };
+		A13E594B28A6810900789615 /* UserListTableViewCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewCellView.swift; sourceTree = "<group>"; };
+		A13E594D28A684C700789615 /* FollowingListViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewFactory.swift; sourceTree = "<group>"; };
+		A13E594F28A6859600789615 /* FollowingListViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewCoordinator.swift; sourceTree = "<group>"; };
 		A1C663FB28A4DB5E00B0980B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		A1C663FD28A4DB7C00B0980B /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A1C6640128A4DBA700B0980B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -193,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CA8CAB28A39BDC00C40642 /* UserListViewCoordinator.swift */,
+				A13E594F28A6859600789615 /* FollowingListViewCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -200,7 +211,9 @@
 		A13B7F0728A3958C0079226D /* UserScenes */ = {
 			isa = PBXGroup;
 			children = (
+				A13E594A28A680D400789615 /* Component */,
 				A13B7F1328A397E00079226D /* UserList */,
+				A13E594328A67B1800789615 /* FollowingList */,
 			);
 			path = UserScenes;
 			sourceTree = "<group>";
@@ -258,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				A1CA8CAD28A39CAF00C40642 /* UserSceneDIContainer.swift */,
+				A13E594D28A684C700789615 /* FollowingListViewFactory.swift */,
 			);
 			path = UserScene;
 			sourceTree = "<group>";
@@ -285,7 +299,6 @@
 			children = (
 				A1CA8CB928A3F30300C40642 /* Cell */,
 				A13B7F1828A3981B0079226D /* UserListViewController.swift */,
-				A1CA8CAF28A39FB600C40642 /* UserListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +310,40 @@
 				A13E593D28A644FA00789615 /* ImageCacheManager.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A13E594328A67B1800789615 /* FollowingList */ = {
+			isa = PBXGroup;
+			children = (
+				A13E594528A67B9D00789615 /* View */,
+				A13E594428A67B9800789615 /* ViewModel */,
+			);
+			path = FollowingList;
+			sourceTree = "<group>";
+		};
+		A13E594428A67B9800789615 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A13E594828A67C1200789615 /* FollowingListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A13E594528A67B9D00789615 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A13E594628A67C0800789615 /* FollowingListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A13E594A28A680D400789615 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				A1CA8CAF28A39FB600C40642 /* UserListView.swift */,
+				A13E594B28A6810900789615 /* UserListTableViewCellView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		A1C663F828A4D80900B0980B /* Network */ = {
@@ -574,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1C6640228A4DBA700B0980B /* NetworkService.swift in Sources */,
+				A13E594928A67C1200789615 /* FollowingListViewModel.swift in Sources */,
 				A1C6640628A4E40600B0980B /* NetworkServiceError.swift in Sources */,
 				A1CA8CB828A3E7BA00C40642 /* UserResponseDTO.swift in Sources */,
 				A1CA8CC328A402DA00C40642 /* UserListCellViewModel.swift in Sources */,
@@ -581,15 +629,19 @@
 				A1CA8CC128A3FBF300C40642 /* UIStackView.swift in Sources */,
 				A13E594228A646E700789615 /* ExtensionSupport.swift in Sources */,
 				A1CA8CAE28A39CAF00C40642 /* UserSceneDIContainer.swift in Sources */,
+				A13E594728A67C0800789615 /* FollowingListViewController.swift in Sources */,
 				A13B7F1028A395FE0079226D /* AppDIContainer.swift in Sources */,
 				A13B7F1228A396520079226D /* AppCoordinator.swift in Sources */,
 				A1CA8CBB28A3F31C00C40642 /* UserListTableViewCell.swift in Sources */,
+				A13E595028A6859600789615 /* FollowingListViewCoordinator.swift in Sources */,
 				A1CC0C5528A37C1F00C7D4B7 /* AppDelegate.swift in Sources */,
 				A13E593E28A644FA00789615 /* ImageCacheManager.swift in Sources */,
 				A1CA8CAA28A39B8A00C40642 /* UserStorage.swift in Sources */,
 				A13B7F1728A397FF0079226D /* UserListViewModel.swift in Sources */,
 				A13B7F1D28A398C70079226D /* UserUseCase.swift in Sources */,
 				A1CA8CB028A39FB600C40642 /* UserListView.swift in Sources */,
+				A13E594C28A6810900789615 /* UserListTableViewCellView.swift in Sources */,
+				A13E594E28A684C700789615 /* FollowingListViewFactory.swift in Sources */,
 				A13E594028A6467300789615 /* UIImageView.swift in Sources */,
 				A1CA8CAC28A39BDC00C40642 /* UserListViewCoordinator.swift in Sources */,
 				A1CC0C5728A37C1F00C7D4B7 /* SceneDelegate.swift in Sources */,
