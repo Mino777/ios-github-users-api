@@ -16,6 +16,8 @@ final class UserListTableViewCell: UITableViewCell {
     private var viewModel: UserListCellViewModelable?
     private(set) var disposeBag = DisposeBag()
     
+    private var dataTask: URLSessionDataTask?
+    
     var didTapFollowButton: Observable<Void> {
         return followButton.rx.tap.asObservable()
     }
@@ -29,6 +31,7 @@ final class UserListTableViewCell: UITableViewCell {
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.borderWidth = 1
         imageView.clipsToBounds = true
@@ -38,12 +41,14 @@ final class UserListTableViewCell: UITableViewCell {
     private let informationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.alignment = .center
         return stackView
     }()
     
     private let userNameLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .body)
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
@@ -66,6 +71,8 @@ final class UserListTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
+        dataTask?.suspend()
+        dataTask?.cancel()
         disposeBag = DisposeBag()
     }
     
@@ -82,16 +89,22 @@ final class UserListTableViewCell: UITableViewCell {
     
     private func setupConstraint() {
         containerStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(10)
+            $0.edges.equalTo(contentView).inset(10)
         }
         
         avatarImageView.snp.makeConstraints {
-            $0.height.equalTo(containerStackView.snp.height)
-            $0.width.equalTo(avatarImageView.snp.height)
+            $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.15)
+            $0.height.equalTo(avatarImageView.snp.width)
+            $0.leading.equalTo(containerStackView.snp.leading).inset(10)
+        }
+        
+        informationStackView.snp.makeConstraints {
+            $0.leading.equalTo(avatarImageView.snp.trailing).offset(5)
         }
         
         followButton.snp.makeConstraints {
             $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.2)
+            $0.height.equalTo(containerStackView.snp.height).multipliedBy(0.6)
         }
     }
     
@@ -107,8 +120,10 @@ final class UserListTableViewCell: UITableViewCell {
             }).disposed(by: disposeBag)
         
         viewModel.userImageEvent
-            .map { UIImage(systemName: $0) }
-            .bind(to: avatarImageView.rx.image)
+            .withUnretained(self)
+            .subscribe { wself, url in
+                wself.dataTask = wself.avatarImageView.tmon.setImage(url)
+            }
             .disposed(by: disposeBag)
         
         viewModel.userNameEvent

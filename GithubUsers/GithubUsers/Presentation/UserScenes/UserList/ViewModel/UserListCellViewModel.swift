@@ -35,7 +35,7 @@ final class UserListCellViewModel: UserListCellViewModelable {
 
 extension UserListCellViewModel {
     func cellDidBind() {
-        userImageEvent.accept("swift")
+        userImageEvent.accept(user.avatarURL)
         userNameEvent.accept(user.login)
         userFollowingEvent.accept(user.isFollowing)
     }
