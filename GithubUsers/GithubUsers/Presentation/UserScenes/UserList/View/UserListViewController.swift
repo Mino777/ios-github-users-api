@@ -11,10 +11,14 @@ import SnapKit
 import RxSwift
 
 final class UserListViewController: UIViewController, Alertable {
-    private lazy var userListView = UserListView(viewModel: viewModel)
+    private lazy var userListView = UserListView()
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
     private let disposeBag = DisposeBag()
+    
+    private typealias DataSource = UITableViewDiffableDataSource<Int, User>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, User>
+    private var dataSource: DataSource?
     
     private let refreshControl = UIRefreshControl()
     
@@ -35,6 +39,7 @@ final class UserListViewController: UIViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        makeDataSource()
         viewModel.requestUserList()
     }
 }
@@ -69,6 +74,39 @@ extension UserListViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "내 팔로잉", style: .plain, target: self, action: nil)
     }
+    
+    private func makeDataSource() {
+        dataSource = DataSource(tableView: userListView.userListTableView) { tableView, indexPath, itemIdentifier in
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: UserListTableViewCell.identifier,
+                for: indexPath
+            ) as? UserListTableViewCell
+            
+            let cellViewModel = UserListCellViewModel(user: itemIdentifier)
+            
+            cell?.bind(cellViewModel)
+            cell?.didTapFollowButton
+                .withUnretained(self)
+                .subscribe { wself, _ in
+                    wself.viewModel.didTapFollowButton(
+                        user: itemIdentifier,
+                        isFollowing: cellViewModel.user.isFollowing
+                    )
+                }
+                .disposed(by: cell?.disposeBag ?? DisposeBag())
+            
+            return cell
+        }
+    }
+    
+    private func applySnapshot(items: [User]) {
+        var snapshot = Snapshot()
+        DispatchQueue.main.async {
+            snapshot.appendSections([.zero])
+            snapshot.appendItems(items)
+            self.dataSource?.apply(snapshot)
+        }
+    }
 }
 
 extension UserListViewController {
@@ -83,6 +121,13 @@ extension UserListViewController {
                 case .showMyFollowingView:
                     wself.coordinator?.showMyFollowing()
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.users
+            .withUnretained(self)
+            .subscribe { wself, users in
+                wself.applySnapshot(items: users)
             }
             .disposed(by: disposeBag)
         
