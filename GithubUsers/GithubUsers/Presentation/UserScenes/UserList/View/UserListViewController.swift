@@ -16,6 +16,8 @@ final class UserListViewController: UIViewController, Alertable {
     private let viewModel: UserListViewModelable
     private let disposeBag = DisposeBag()
     
+    private let refreshControl = UIRefreshControl()
+    
     init(viewModel: UserListViewModelable) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -39,11 +41,16 @@ final class UserListViewController: UIViewController, Alertable {
 
 extension UserListViewController {
     private func setupView() {
-        view.backgroundColor = .systemBackground
-        
+        setupViewAttribute()
         addSubviews()
         setupConstraint()
         setupNavigationBar()
+    }
+    
+    private func setupViewAttribute() {
+        view.backgroundColor = .systemBackground
+        userListView.userListTableView.refreshControl = refreshControl
+        refreshControl.attributedTitle = NSAttributedString(string: "새로고침")
     }
     
     private func addSubviews() {
@@ -78,11 +85,22 @@ extension UserListViewController {
             }
             .disposed(by: disposeBag)
         
+        refreshControl.rx.controlEvent(.valueChanged)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .bind(with: self) { wself, _ in
+                wself.viewModel.refreshLoading.accept(true)
+                wself.viewModel.requestUserList()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.refreshLoading
+            .bind(to: refreshControl.rx.isRefreshing)
+            .disposed(by: disposeBag)
+        
         navigationItem.rightBarButtonItem?.rx.tap
-            .asDriver()
-            .drive(with: self, onNext: { wself, _ in
+            .bind(with: self) { wself, _ in
                 wself.viewModel.showMyFollowingView()
-            })
+            }
             .disposed(by: disposeBag)
     }
 }

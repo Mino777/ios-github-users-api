@@ -29,6 +29,6 @@ extension UserListViewCoordinator {
     }
     
     func showMyFollowing() {
-        
+        print(#function)
     }
 }

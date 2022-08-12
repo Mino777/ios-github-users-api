@@ -12,13 +12,12 @@ import RxSwift
 final class UserListView: UIView {
     private typealias DataSource = UITableViewDiffableDataSource<Int, User>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Int, User>
-
     private var dataSource: DataSource?
-    private let viewModel: UserListViewModelable
     
+    private let viewModel: UserListViewModelable
     private let disposeBag = DisposeBag()
-
-    private let userListTableView: UITableView = {
+    
+    let userListTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: UserListTableViewCell.identifier)
         return tableView

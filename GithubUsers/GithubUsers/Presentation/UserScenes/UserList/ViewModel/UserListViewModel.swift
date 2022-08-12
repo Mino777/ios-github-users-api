@@ -5,6 +5,8 @@
 //  Created by 조민호 on 2022/08/10.
 //
 
+import Foundation
+
 import RxSwift
 import RxRelay
 
@@ -17,6 +19,8 @@ protocol UserListViewModelInput {
     func requestUserList()
     func didTapFollowButton(user: User, isFollowing: Bool)
     func showMyFollowingView()
+    
+    var refreshLoading: PublishRelay<Bool> { get }
 }
 
 protocol UserListViewModelOutput {
@@ -33,6 +37,8 @@ final class UserListViewModel: UserListViewModelable {
     let state = PublishSubject<UserListViewModelState>()
     let users = BehaviorRelay<[User]>(value: [])
     
+    let refreshLoading = PublishRelay<Bool>()
+    
     init(useCase: UserUseCaseable) {
         self.useCase = useCase
     }
@@ -41,11 +47,12 @@ final class UserListViewModel: UserListViewModelable {
 extension UserListViewModel {
     func requestUserList() {
         useCase.requestUserList()
-            .withUnretained(self)
-            .subscribe { wself, result in
+            .subscribe(with: self) { wself, result in
                 wself.users.accept(result)
-            } onError: { error in
-                self.state.onNext(.showErrorAlertEvent(error: error.localizedDescription))
+                wself.refreshLoading.accept(false)
+            } onError: { wself, error in
+                wself.state.onNext(.showErrorAlertEvent(error: error.localizedDescription))
+                wself.refreshLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }
