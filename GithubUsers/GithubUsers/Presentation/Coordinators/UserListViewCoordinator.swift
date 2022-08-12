@@ -41,4 +41,8 @@ extension UserListViewCoordinator {
         
         sceneCoordinator.start()
     }
+    
+    func showUserDetail(user: User) {
+        print(user)
+    }
 }

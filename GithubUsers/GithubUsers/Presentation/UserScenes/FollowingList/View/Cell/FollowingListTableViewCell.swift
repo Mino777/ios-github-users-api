@@ -1,8 +1,8 @@
 //
-//  UserListTableViewCell.swift
+//  FollowingListTableViewCell.swift
 //  GithubUsers
 //
-//  Created by 조민호 on 2022/08/10.
+//  Created by 조민호 on 2022/08/12.
 //
 
 import UIKit
@@ -12,14 +12,14 @@ import RxCocoa
 
 import SnapKit
 
-final class UserListTableViewCell: UITableViewCell {
+final class FollowingListTableViewCell: UITableViewCell {
     private lazy var containerView = ListTableViewCellView()
-    private var viewModel: UserListCellViewModelable?
+    private var viewModel: FollowingListCellViewModelable?
     private(set) var disposeBag = DisposeBag()
     
     private var dataTask: URLSessionDataTask?
     
-    var didTapFollowButton: Observable<Void> {
+    var didTapUnFollowButton: Observable<Void> {
         return containerView.followButton.rx.tap.asObservable()
     }
     
@@ -43,6 +43,7 @@ final class UserListTableViewCell: UITableViewCell {
     private func setupView() {
         addSubviews()
         setupConstraint()
+        setupViewAttribute()
     }
     
     private func addSubviews() {
@@ -55,16 +56,13 @@ final class UserListTableViewCell: UITableViewCell {
         }
     }
     
-    func bind(_ viewModel: UserListCellViewModelable) {
+    private func setupViewAttribute() {
+        containerView.changeButtonState(true)
+        selectionStyle = .none
+    }
+    
+    func bind(_ viewModel: FollowingListCellViewModelable) {
         self.viewModel = viewModel
-        
-        containerView.followButton.rx.tap
-            .asDriver()
-            .throttle(.seconds(1))
-            .drive(with: self, onNext: { wself, _ in
-                wself.containerView.changeButtonState(!wself.containerView.followButton.isSelected)
-                wself.viewModel?.didTapFollowButton()
-            }).disposed(by: disposeBag)
         
         viewModel.userImageEvent
             .withUnretained(self)
@@ -77,13 +75,7 @@ final class UserListTableViewCell: UITableViewCell {
             .bind(to: containerView.userNameLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel.userFollowingEvent
-            .withUnretained(self)
-            .subscribe { wself, state in
-                wself.containerView.changeButtonState(state)
-            }
-            .disposed(by: disposeBag)
-        
         viewModel.cellDidBind()
     }
 }
+

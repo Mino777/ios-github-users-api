@@ -1,5 +1,5 @@
 //
-//  UserListTableViewCellView.swift
+//  ListTableViewCellView.swift
 //  GithubUsers
 //
 //  Created by 조민호 on 2022/08/12.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class UserListTableViewCellView: UIView {
+final class ListTableViewCellView: UIView {
     let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal

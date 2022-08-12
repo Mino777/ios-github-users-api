@@ -7,7 +7,7 @@
 
 import UIKit
 
-import SnapKit
+import RxSwift
 
 final class UserListView: UIView {
     let userListTableView: UITableView = {

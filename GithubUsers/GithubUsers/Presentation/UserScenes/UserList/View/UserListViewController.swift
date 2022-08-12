@@ -40,6 +40,10 @@ final class UserListViewController: UIViewController, Alertable {
         super.viewDidLoad()
         bind()
         makeDataSource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel.requestUserList()
     }
 }
@@ -86,6 +90,7 @@ extension UserListViewController {
             
             cell?.bind(cellViewModel)
             cell?.didTapFollowButton
+                .throttle(.seconds(1), scheduler: MainScheduler.instance)
                 .withUnretained(self)
                 .subscribe { wself, _ in
                     wself.viewModel.didTapFollowButton(
@@ -94,17 +99,17 @@ extension UserListViewController {
                     )
                 }
                 .disposed(by: cell?.disposeBag ?? DisposeBag())
-            
             return cell
         }
     }
     
     private func applySnapshot(items: [User]) {
         var snapshot = Snapshot()
+        snapshot.appendSections([.zero])
+        snapshot.appendItems(items)
+        snapshot.reloadItems(items)
         DispatchQueue.main.async {
-            snapshot.appendSections([.zero])
-            snapshot.appendItems(items)
-            self.dataSource?.apply(snapshot)
+            self.dataSource?.apply(snapshot, animatingDifferences: false)
         }
     }
 }
@@ -146,6 +151,15 @@ extension UserListViewController {
         navigationItem.rightBarButtonItem?.rx.tap
             .bind(with: self) { wself, _ in
                 wself.viewModel.showMyFollowingView()
+            }
+            .disposed(by: disposeBag)
+        
+        userListView.userListTableView.rx.itemSelected
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { wself, indexPath in
+                wself.userListView.userListTableView.deselectRow(at: indexPath, animated: true)
+                wself.coordinator?.showUserDetail(user: wself.viewModel.users.value[indexPath.row])
             }
             .disposed(by: disposeBag)
     }
