@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-final class UserListViewController: UIViewController {
+final class UserListViewController: UIViewController, Alertable {
     private lazy var userListView = UserListView(viewModel: viewModel)
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
@@ -32,6 +32,7 @@ final class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         viewModel.requestUserList()
     }
 }
@@ -60,5 +61,28 @@ extension UserListViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "내 팔로잉", style: .plain, target: self, action: nil)
+    }
+}
+
+extension UserListViewController {
+    private func bind() {
+        viewModel.state
+            .withUnretained(self)
+            .subscribe { wself, state in
+                switch state {
+                case .showErrorAlertEvent(let error):
+                    wself.showErrorAlertWithConfirmButton(error)
+                case .showMyFollowingView:
+                    wself.coordinator?.showMyFollowing()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem?.rx.tap
+            .asDriver()
+            .drive(with: self, onNext: { wself, _ in
+                wself.viewModel.showMyFollowingView()
+            })
+            .disposed(by: disposeBag)
     }
 }

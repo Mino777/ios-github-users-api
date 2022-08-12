@@ -47,7 +47,7 @@ final class UserListTableViewCell: UITableViewCell {
         return label
     }()
     
-    let followButton: UIButton = {
+    private let followButton: UIButton = {
         let button = UIButton()
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1

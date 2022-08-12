@@ -9,15 +9,18 @@ import RxSwift
 import RxRelay
 
 enum UserListViewModelState {
-
+    case showErrorAlertEvent(error: String)
+    case showMyFollowingView
 }
 
 protocol UserListViewModelInput {
     func requestUserList()
     func didTapFollowButton(user: User, isFollowing: Bool)
+    func showMyFollowingView()
 }
 
 protocol UserListViewModelOutput {
+    var state: PublishSubject<UserListViewModelState> { get }
     var users: BehaviorRelay<[User]> { get }
 }
 
@@ -26,6 +29,8 @@ protocol UserListViewModelable: UserListViewModelInput, UserListViewModelOutput 
 final class UserListViewModel: UserListViewModelable {
     private let useCase: UserUseCaseable
     private let disposeBag = DisposeBag()
+    
+    let state = PublishSubject<UserListViewModelState>()
     let users = BehaviorRelay<[User]>(value: [])
     
     init(useCase: UserUseCaseable) {
@@ -40,7 +45,7 @@ extension UserListViewModel {
             .subscribe { wself, result in
                 wself.users.accept(result)
             } onError: { error in
-                print(error)
+                self.state.onNext(.showErrorAlertEvent(error: error.localizedDescription))
             }
             .disposed(by: disposeBag)
     }
@@ -60,5 +65,9 @@ extension UserListViewModel {
         } else {
             useCase.delete(updatedUser)
         }
+    }
+    
+    func showMyFollowingView() {
+        state.onNext(.showMyFollowingView)
     }
 }

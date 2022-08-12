@@ -27,4 +27,8 @@ extension UserListViewCoordinator {
         userListViewController.coordinator = self
         self.navigationController?.pushViewController(userListViewController, animated: true)
     }
+    
+    func showMyFollowing() {
+        
+    }
 }

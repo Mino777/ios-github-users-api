@@ -13,6 +13,7 @@
 		A13B7F1928A3981B0079226D /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1828A3981B0079226D /* UserListViewController.swift */; };
 		A13B7F1B28A398750079226D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1A28A398750079226D /* User.swift */; };
 		A13B7F1D28A398C70079226D /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B7F1C28A398C70079226D /* UserUseCase.swift */; };
+		A13E593C28A62A5C00789615 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E593B28A62A5C00789615 /* AlertBuilder.swift */; };
 		A1C663F028A4C9B500B0980B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663EF28A4C9B500B0980B /* RxCocoa */; };
 		A1C663F228A4C9B500B0980B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663F128A4C9B500B0980B /* RxRelay */; };
 		A1C663F428A4C9B500B0980B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A1C663F328A4C9B500B0980B /* RxSwift */; };
@@ -69,6 +70,7 @@
 		A13B7F1828A3981B0079226D /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		A13B7F1A28A398750079226D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A13B7F1C28A398C70079226D /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
+		A13E593B28A62A5C00789615 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		A1C663FB28A4DB5E00B0980B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		A1C663FD28A4DB7C00B0980B /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		A1C6640128A4DBA700B0980B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -282,6 +284,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A13E593A28A62A4F00789615 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A13E593B28A62A5C00789615 /* AlertBuilder.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A1C663F828A4D80900B0980B /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +356,7 @@
 		A1CA8CBC28A3F34500C40642 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A13E593A28A62A4F00789615 /* Utils */,
 				A1CA8CBD28A3F36200C40642 /* Extensions */,
 			);
 			path = Common;
@@ -571,6 +582,7 @@
 				A1CA8CAC28A39BDC00C40642 /* UserListViewCoordinator.swift in Sources */,
 				A1CC0C5728A37C1F00C7D4B7 /* SceneDelegate.swift in Sources */,
 				A1C663FC28A4DB5E00B0980B /* Endpoint.swift in Sources */,
+				A13E593C28A62A5C00789615 /* AlertBuilder.swift in Sources */,
 				A13B7F1928A3981B0079226D /* UserListViewController.swift in Sources */,
 				A1C6640428A4DCCB00B0980B /* EndpointStorage.swift in Sources */,
 				A13B7F1B28A398750079226D /* User.swift in Sources */,
