@@ -31,9 +31,6 @@ final class UserListTableViewCell: UITableViewCell {
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.borderColor = UIColor.black.cgColor
-        imageView.layer.borderWidth = 1
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -68,6 +65,11 @@ final class UserListTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2.0
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         avatarImageView.image = nil
@@ -95,7 +97,6 @@ final class UserListTableViewCell: UITableViewCell {
         avatarImageView.snp.makeConstraints {
             $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.15)
             $0.height.equalTo(avatarImageView.snp.width)
-            $0.leading.equalTo(containerStackView.snp.leading).inset(10)
         }
         
         informationStackView.snp.makeConstraints {
