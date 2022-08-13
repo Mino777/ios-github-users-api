@@ -14,6 +14,15 @@ struct User: Hashable {
     let followersURL: String
     let followingURL: String
     var isFollowing: Bool
+    
+    static let empty: Self = User(
+        login: "",
+        id: -1,
+        avatarURL: "",
+        followersURL: "",
+        followingURL: "",
+        isFollowing: false
+    )
 }
 
 #if DEBUG

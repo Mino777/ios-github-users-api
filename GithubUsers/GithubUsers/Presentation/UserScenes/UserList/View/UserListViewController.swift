@@ -159,7 +159,7 @@ extension UserListViewController {
             .withUnretained(self)
             .subscribe { wself, indexPath in
                 wself.userListView.userListTableView.deselectRow(at: indexPath, animated: true)
-                wself.coordinator?.showUserDetail(user: wself.viewModel.users.value[indexPath.row])
+                wself.coordinator?.showUserDetail(user: wself.viewModel.users.value[safe: indexPath.row] ?? User.empty)
             }
             .disposed(by: disposeBag)
     }
