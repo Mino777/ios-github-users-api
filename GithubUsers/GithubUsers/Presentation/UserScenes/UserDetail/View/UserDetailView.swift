@@ -53,6 +53,9 @@ final class UserDetailView: UIView {
     let followingButton: UIButton = {
         let button = UIButton()
         button.setTitle("팔로잉", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = .black
+        button.isSelected = true
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         return button
@@ -61,6 +64,9 @@ final class UserDetailView: UIView {
     let followerButton: UIButton = {
         let button = UIButton()
         button.setTitle("팔로워", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.backgroundColor = .white
+        button.isSelected = false
         button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         return button
@@ -116,6 +122,32 @@ final class UserDetailView: UIView {
         avatarImageView.snp.makeConstraints {
             $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.25)
             $0.height.equalTo(avatarImageView.snp.width)
+        }
+    }
+    
+    func changeFollowStateButton(_ state: Bool) {
+        if state {
+            followStateButton.setTitle("언팔로우", for: .normal)
+            followStateButton.setTitleColor(.white, for: .normal)
+            followStateButton.backgroundColor = .black
+        } else {
+            followStateButton.setTitle("팔로우", for: .normal)
+            followStateButton.setTitleColor(.black, for: .normal)
+            followStateButton.backgroundColor = .white
+        }
+    }
+    
+    func changeFollowButton(_ isFollowingButton: Bool) {
+        if isFollowingButton {
+            followingButton.setTitleColor(.white, for: .normal)
+            followingButton.backgroundColor = .black
+            followerButton.setTitleColor(.black, for: .normal)
+            followerButton.backgroundColor = .white
+        } else {
+            followerButton.setTitleColor(.white, for: .normal)
+            followerButton.backgroundColor = .black
+            followingButton.setTitleColor(.black, for: .normal)
+            followingButton.backgroundColor = .white
         }
     }
 }

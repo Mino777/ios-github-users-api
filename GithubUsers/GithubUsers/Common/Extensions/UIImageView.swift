@@ -9,6 +9,7 @@ import UIKit
 
 extension UIImageView: ExtensionSupport {}
 extension Extension where Base == UIImageView {
+    @discardableResult
     func setImage(_ url: String) -> URLSessionDataTask? {
         if let cachedImage = ImageCacheManager.shared.retrive(forKey: url) {
             self.base.image = cachedImage

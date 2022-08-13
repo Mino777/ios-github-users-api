@@ -9,6 +9,8 @@ import RxSwift
 
 protocol UserUseCaseable {
     func requestUserList() -> Observable<[User]>
+    func requestFollowerList(_ url: String) -> Observable<[User]>
+    func requestFollowingList(_ url: String) -> Observable<[User]>
     func create(_ item: User)
     var followingUsersSubject: BehaviorSubject<UserStorageState> { get }
     func delete(_ item: User)
@@ -41,6 +43,14 @@ extension UserUseCase: UserUseCaseable {
                 )
             }
         }
+    }
+    
+    func requestFollowerList(_ url: String) -> Observable<[User]> {
+        userRepository.requestUserList(EndpointStorage.followers(url).endPoint)
+    }
+    
+    func requestFollowingList(_ url: String) -> Observable<[User]> {
+        userRepository.requestUserList(EndpointStorage.following(url).endPoint)
     }
     
     func create(_ item: User) {
