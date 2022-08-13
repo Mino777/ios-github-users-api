@@ -13,7 +13,6 @@ final class UserListViewCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     private let dependencies: UserSceneDIContainerable
-    private weak var viewController: UserListViewController?
     
     init(navigationController: UINavigationController, dependencies: UserSceneDIContainerable) {
         self.navigationController = navigationController
@@ -43,6 +42,16 @@ extension UserListViewCoordinator {
     }
     
     func showUserDetail(user: User) {
-        print(user)
+        guard let navigationController = navigationController else {
+            return
+        }
+        
+        let factory = dependencies.makeUserDetailViewFactory()
+        let sceneCoordinator = factory.makeUserDetailViewCoordinator(navigationController: navigationController)
+        
+        childCoordinators.append(sceneCoordinator)
+        sceneCoordinator.parentCoordinator = self
+        
+        sceneCoordinator.start(user)
     }
 }

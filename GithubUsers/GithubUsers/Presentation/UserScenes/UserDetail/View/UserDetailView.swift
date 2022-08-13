@@ -1,16 +1,16 @@
 //
-//  UserListView.swift
+//  UserDetailView.swift
 //  GithubUsers
 //
-//  Created by 조민호 on 2022/08/10.
+//  Created by 조민호 on 2022/08/13.
 //
 
 import UIKit
 
-final class UserListView: UIView {
-    let userListTableView: UITableView = {
+final class UserDetailView: UIView {
+    let followListTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UserListTableViewCell.self, forCellReuseIdentifier: UserListTableViewCell.identifier)
+        tableView.register(UserDetailTableViewCell.self, forCellReuseIdentifier: UserDetailTableViewCell.identifier)
         return tableView
     }()
     
@@ -30,11 +30,11 @@ final class UserListView: UIView {
     }
     
     private func addSubviews() {
-        addSubview(userListTableView)
+        addSubview(followListTableView)
     }
     
     private func setupConstraint() {
-        userListTableView.snp.makeConstraints {
+        followListTableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }

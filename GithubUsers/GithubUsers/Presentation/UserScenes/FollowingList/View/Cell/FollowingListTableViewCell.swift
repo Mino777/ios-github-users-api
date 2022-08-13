@@ -78,4 +78,3 @@ final class FollowingListTableViewCell: UITableViewCell {
         viewModel.cellDidBind()
     }
 }
-

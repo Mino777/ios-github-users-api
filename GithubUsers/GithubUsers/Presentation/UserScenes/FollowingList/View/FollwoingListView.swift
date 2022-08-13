@@ -7,7 +7,7 @@
 
 import UIKit
 
-import RxSwift
+import SnapKit
 
 final class FollowingListView: UIView {
     let followingListTableView: UITableView = {

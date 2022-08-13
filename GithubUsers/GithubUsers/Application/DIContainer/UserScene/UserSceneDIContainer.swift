@@ -9,8 +9,11 @@ import UIKit
 
 protocol UserSceneDIContainerable: AnyObject {
     func makeUserListViewController() -> UserListViewController
+    
     func makeUserListViewCoordinator(navigationController: UINavigationController) -> UserListViewCoordinator
+    
     func makeFollowingListViewFactory() -> FollowingListViewFactoriable
+    func makeUserDetailViewFactory() -> UserDetailViewFactoriable
 }
 
 final class UserSceneDIContainer {
@@ -57,6 +60,12 @@ extension UserSceneDIContainer: UserSceneDIContainerable {
     
     func makeFollowingListViewFactory() -> FollowingListViewFactoriable {
         return FollowingListViewFactory(
+            dependencies: .init(userUseCase: makeUserUseCase())
+        )
+    }
+    
+    func makeUserDetailViewFactory() -> UserDetailViewFactoriable {
+        return UserDetailViewFactory(
             dependencies: .init(userUseCase: makeUserUseCase())
         )
     }

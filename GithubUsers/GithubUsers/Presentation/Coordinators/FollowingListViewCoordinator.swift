@@ -13,7 +13,6 @@ final class FollowingListViewCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     private unowned let factory: FollowingListViewFactoriable
-    private weak var viewController: UserListViewController?
     
     init(navigationController: UINavigationController, factory: FollowingListViewFactoriable) {
         self.navigationController = navigationController
