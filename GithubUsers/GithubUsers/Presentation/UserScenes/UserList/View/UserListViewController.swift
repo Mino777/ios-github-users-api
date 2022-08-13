@@ -107,7 +107,6 @@ extension UserListViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.zero])
         snapshot.appendItems(items)
-        snapshot.reloadItems(items)
         DispatchQueue.main.async {
             self.dataSource?.apply(snapshot, animatingDifferences: false)
         }

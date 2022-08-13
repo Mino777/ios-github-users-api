@@ -71,9 +71,19 @@ extension UserListViewModel {
         } else {
             useCase.delete(updatedUser)
         }
+        
+        updateUser(user, isFollowing)
     }
     
     func showMyFollowingView() {
         state.onNext(.showMyFollowingView)
+    }
+    
+    private func updateUser(_ user: User, _ isFollowing: Bool) {
+        if let updateNeededIndex = users.value.firstIndex(of: user) {
+            var currentUsers = users.value
+            currentUsers[updateNeededIndex].isFollowing = isFollowing
+            users.accept(currentUsers)
+        }
     }
 }

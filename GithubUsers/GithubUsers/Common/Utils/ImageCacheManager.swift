@@ -17,7 +17,7 @@ final class ImageCacheManager {
         cache.setObject(object, forKey: key as NSString)
     }
     
-    func retrive(forKey key: String) -> UIImage? {
+    func retrieve(forKey key: String) -> UIImage? {
         cache.object(forKey: key as NSString)
     }
 }

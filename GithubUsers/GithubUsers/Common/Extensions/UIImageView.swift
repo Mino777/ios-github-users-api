@@ -11,7 +11,7 @@ extension UIImageView: ExtensionSupport {}
 extension Extension where Base == UIImageView {
     @discardableResult
     func setImage(_ url: String) -> URLSessionDataTask? {
-        if let cachedImage = ImageCacheManager.shared.retrive(forKey: url) {
+        if let cachedImage = ImageCacheManager.shared.retrieve(forKey: url) {
             self.base.image = cachedImage
             return nil
         }
