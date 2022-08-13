@@ -29,8 +29,12 @@ extension UserResponseDTO {
             id: id,
             avatarURL: avatarURL,
             followersURL: followersURL,
-            followingURL: followingURL,
+            followingURL: replaceURLBrace(followingURL),
             isFollowing: false
         )
+    }
+    
+    private func replaceURLBrace(_ url: String) -> String {
+        return url.replacingOccurrences(of: "{/other_user}", with: "")
     }
 }
