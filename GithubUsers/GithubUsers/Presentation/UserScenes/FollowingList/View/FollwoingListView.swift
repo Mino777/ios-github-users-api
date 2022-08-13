@@ -26,7 +26,6 @@ final class FollowingListView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .white
         addSubviews()
         setupConstraint()
     }

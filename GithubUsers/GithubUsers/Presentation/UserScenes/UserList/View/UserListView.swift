@@ -24,7 +24,6 @@ final class UserListView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = .white
         addSubviews()
         setupConstraint()
     }
