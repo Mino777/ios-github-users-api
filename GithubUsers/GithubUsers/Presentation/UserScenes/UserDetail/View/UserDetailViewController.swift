@@ -39,7 +39,6 @@ final class UserDetailViewController: UIViewController, Alertable {
         super.viewDidLoad()
         bind()
         makeDataSource()
-        
         viewModel.viewDidBind()
     }
     
@@ -60,6 +59,7 @@ extension UserDetailViewController {
     
     private func setupViewAttribute() {
         view.backgroundColor = .systemBackground
+        navigationItem.largeTitleDisplayMode = .never
         userDetailView.followListTableView.refreshControl = refreshControl
         refreshControl.attributedTitle = NSAttributedString(string: "새로고침")
     }
