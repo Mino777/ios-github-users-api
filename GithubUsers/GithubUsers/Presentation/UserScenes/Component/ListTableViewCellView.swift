@@ -14,11 +14,13 @@ final class ListTableViewCellView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     let avatarImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -56,7 +58,7 @@ final class ListTableViewCellView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
-    }
+    }    
     
     private func setupView() {
         addSubviews()
@@ -71,18 +73,14 @@ final class ListTableViewCellView: UIView {
     
     private func setupConstraint() {
         containerStackView.snp.makeConstraints {
-            $0.edges.equalTo(self).inset(10)
+            $0.edges.equalToSuperview().inset(10)
         }
         
         avatarImageView.snp.makeConstraints {
-            $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.15)
-            $0.height.equalTo(avatarImageView.snp.width)
+            $0.height.equalTo(containerStackView.snp.height)
+            $0.width.equalTo(avatarImageView.snp.height)
         }
-        
-        informationStackView.snp.makeConstraints {
-            $0.leading.equalTo(avatarImageView.snp.trailing).offset(5)
-        }
-        
+
         followButton.snp.makeConstraints {
             $0.width.equalTo(containerStackView.snp.width).multipliedBy(0.2)
             $0.height.equalTo(containerStackView.snp.height).multipliedBy(0.6)

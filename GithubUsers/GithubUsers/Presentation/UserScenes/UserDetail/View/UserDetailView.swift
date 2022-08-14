@@ -89,6 +89,7 @@ final class UserDetailView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        followListTableView.rowHeight = frame.size.height * 0.125
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
     }
     

@@ -23,6 +23,11 @@ final class UserListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        userListTableView.rowHeight = frame.size.height * 0.125
+    }
+    
     private func setupView() {
         addSubviews()
         setupConstraint()
