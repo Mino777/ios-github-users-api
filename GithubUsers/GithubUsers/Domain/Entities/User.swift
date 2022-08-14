@@ -24,17 +24,3 @@ struct User: Hashable {
         isFollowing: false
     )
 }
-
-#if DEBUG
-extension User {
-    static func sampleData() -> [User] {
-        var tempData = [User]()
-        
-        for index in 0 ..< 10 {
-            tempData.append(User(login: "임시 사용자 이름\(index)", id: index, avatarURL: "", followersURL: "", followingURL: "", isFollowing: index % 2 == 0 ? true : false))
-        }
-        
-        return tempData
-    }
-}
-#endif
