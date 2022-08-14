@@ -40,6 +40,7 @@ final class UserDetailView: UIView {
     
     let userNameLabel: UILabel = {
         let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .title3)
         return label
     }()
     

@@ -34,7 +34,7 @@ final class ListTableViewCellView: UIView {
     
     let userNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font = .preferredFont(forTextStyle: .title3)
         label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
