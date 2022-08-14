@@ -14,7 +14,6 @@ final class ListTableViewCellView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 10
-        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     

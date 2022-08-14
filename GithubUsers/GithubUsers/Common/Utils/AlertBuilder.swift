@@ -30,18 +30,21 @@ final class AlertBuilder {
     init(viewController: UIViewController?) {
         self.viewController = viewController
     }
-    
-    func setViewController(to viewController: UIViewController?) -> Self {
-        self.viewController = viewController
-        return self
-    }
-    
-    func addAction(title: String, style: UIAlertAction.Style, action: (() -> Void)? = nil) -> Self {
+
+    func addAction(
+        title: String,
+        style: UIAlertAction.Style,
+        action: (() -> Void)? = nil
+    ) -> Self {
         actions.append(AlertAction(title: title, style: style, completionHandler: action))
         return self
     }
     
-    func show(title: String? = nil, message: String? = nil, style: UIAlertController.Style) {
+    func show(
+        title: String? = nil,
+        message: String? = nil,
+        style: UIAlertController.Style
+    ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         
         actions.forEach { action in
