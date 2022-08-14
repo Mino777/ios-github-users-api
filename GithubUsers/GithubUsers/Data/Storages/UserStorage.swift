@@ -36,11 +36,11 @@ enum UserStorageState {
 }
 
 protocol UserStorageable: AnyObject {
-    func create(_ item: User)
+    func create(_ item: UserRealm)
     var followingUsersSubject: BehaviorSubject<UserStorageState> { get }
     func followingObservable() -> Observable<[User]>
-    func update(_ item: User)
-    func delete(_ item: User)
+    func update(_ item: UserRealm)
+    func delete(_ item: UserRealm)
 }
 
 final class UserStorage: UserStorageable {
@@ -51,10 +51,10 @@ final class UserStorage: UserStorageable {
         followingUsers.onNext(.success(items: readAll()))
     }
     
-    func create(_ item: User) {
+    func create(_ item: UserRealm) {
         write(.createFail) { [weak self] in
             guard let self = self else { return }
-            self.realm.add(self.transferToTodoRealm(with: item))
+            self.realm.add(item)
             self.followingUsers.onNext(.success(items: self.readAll()))
         }
     }
@@ -77,15 +77,15 @@ final class UserStorage: UserStorageable {
         }
     }
     
-    func update(_ item: User) {
+    func update(_ item: UserRealm) {
         write(.updateFail) { [weak self] in
             guard let self = self else { return }
-            self.realm.add(self.transferToTodoRealm(with: item), update: .modified)
+            self.realm.add(item, update: .modified)
             self.followingUsers.onNext(.success(items: self.readAll()))
         }
     }
     
-    func delete(_ item: User) {
+    func delete(_ item: UserRealm) {
         write(.deleteFail) { [weak self] in
             guard let self = self else { return }
             
@@ -110,18 +110,7 @@ final class UserStorage: UserStorageable {
             .objects(UserRealm.self)
             .map(transferToTodo)
     }
-    
-    private func transferToTodoRealm(with item: User) -> UserRealm {
-        return UserRealm(
-            id: item.id,
-            login: item.login,
-            avatarURL: item.avatarURL,
-            followersURL: item.followersURL,
-            followingURL: item.followingURL,
-            isFollowing: item.isFollowing
-        )
-    }
-    
+        
     private func transferToTodo(with item: UserRealm) -> User {
         return User(
             login: item.login,

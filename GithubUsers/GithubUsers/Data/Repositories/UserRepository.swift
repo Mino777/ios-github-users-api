@@ -43,7 +43,7 @@ extension UserRepository {
     }
     
     func create(_ item: User) {
-        userStorage.create(item)
+        userStorage.create(transferToTodoRealm(with: item))
     }
     
     var followingUsersSubject: BehaviorSubject<UserStorageState> {
@@ -51,6 +51,17 @@ extension UserRepository {
     }
     
     func delete(_ item: User) {
-        userStorage.delete(item)
+        userStorage.delete(transferToTodoRealm(with: item))
+    }
+    
+    private func transferToTodoRealm(with item: User) -> UserRealm {
+        return UserRealm(
+            id: item.id,
+            login: item.login,
+            avatarURL: item.avatarURL,
+            followersURL: item.followersURL,
+            followingURL: item.followingURL,
+            isFollowing: item.isFollowing
+        )
     }
 }
