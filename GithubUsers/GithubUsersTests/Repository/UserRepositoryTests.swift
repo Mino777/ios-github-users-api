@@ -71,7 +71,6 @@ final class UserRepositoryTests: XCTestCase {
             .subscribe(onNext: { wself, result in
                 // then
                 XCTAssertEqual(result, expected)
-                wself.stubNetworkService.verifyRequest()
                 expectation.fulfill()
             })
             .disposed(by: disposeBag)
