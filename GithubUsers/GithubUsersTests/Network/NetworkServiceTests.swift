@@ -13,8 +13,8 @@ final class NetworkServiceTests: XCTestCase {
     var sut: NetworkServiceable!
     var disposeBag: DisposeBag!
     
-    override func setUp() {
-        super.setUp()
+    override func setUpWithError() throws {
+        try super.setUpWithError()
         let urlSession: URLSession = {
             let configuration: URLSessionConfiguration = {
                 let configuration = URLSessionConfiguration.default
@@ -27,8 +27,8 @@ final class NetworkServiceTests: XCTestCase {
         disposeBag = DisposeBag()
     }
     
-    override func tearDown() {
-        super.tearDown()
+    override func tearDownWithError() throws {
+        try super.tearDownWithError()
         sut = nil
         disposeBag = nil
     }

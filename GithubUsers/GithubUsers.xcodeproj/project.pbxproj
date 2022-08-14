@@ -68,6 +68,9 @@
 		A1DE0C6728A92CEB00629BE0 /* StubURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C6628A92CEB00629BE0 /* StubURLProtocol.swift */; };
 		A1DE0C6A28A93A2E00629BE0 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C6928A93A2E00629BE0 /* NetworkServiceTests.swift */; };
 		A1DE0C6E28A9532D00629BE0 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C6D28A9532D00629BE0 /* NetworkServiceError.swift */; };
+		A1DE0C7028A958D800629BE0 /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */; };
+		A1DE0C7528A95B7800629BE0 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7428A95B7800629BE0 /* UserRepositoryTests.swift */; };
+		A1DE0C7828A95DE300629BE0 /* MockUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +150,9 @@
 		A1DE0C6628A92CEB00629BE0 /* StubURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubURLProtocol.swift; sourceTree = "<group>"; };
 		A1DE0C6928A93A2E00629BE0 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		A1DE0C6D28A9532D00629BE0 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
+		A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
+		A1DE0C7428A95B7800629BE0 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
+		A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,8 +552,9 @@
 		A1CC0C6A28A37C2100C7D4B7 /* GithubUsersTests */ = {
 			isa = PBXGroup;
 			children = (
+				A1DE0C7328A95B6200629BE0 /* Repository */,
 				A1DE0C6828A939EF00629BE0 /* Network */,
-				A1DE0C6C28A9530000629BE0 /* Extension */,
+				A1DE0C6C28A9530000629BE0 /* Extensions */,
 				A1DE0C6428A92CC500629BE0 /* TestDouble */,
 			);
 			path = GithubUsersTests;
@@ -575,6 +582,7 @@
 		A1DE0C6428A92CC500629BE0 /* TestDouble */ = {
 			isa = PBXGroup;
 			children = (
+				A1DE0C7628A95DC400629BE0 /* Mock */,
 				A1DE0C6528A92CCB00629BE0 /* Stub */,
 				A1DE0C5D28A92B3900629BE0 /* TestJson */,
 			);
@@ -585,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				A1DE0C6628A92CEB00629BE0 /* StubURLProtocol.swift */,
+				A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -597,12 +606,28 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		A1DE0C6C28A9530000629BE0 /* Extension */ = {
+		A1DE0C6C28A9530000629BE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A1DE0C6D28A9532D00629BE0 /* NetworkServiceError.swift */,
 			);
-			path = Extension;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A1DE0C7328A95B6200629BE0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A1DE0C7428A95B7800629BE0 /* UserRepositoryTests.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		A1DE0C7628A95DC400629BE0 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -803,6 +828,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DE0C7828A95DE300629BE0 /* MockUserStorage.swift in Sources */,
+				A1DE0C7028A958D800629BE0 /* StubNetworkService.swift in Sources */,
+				A1DE0C7528A95B7800629BE0 /* UserRepositoryTests.swift in Sources */,
 				A1DE0C6A28A93A2E00629BE0 /* NetworkServiceTests.swift in Sources */,
 				A1DE0C6E28A9532D00629BE0 /* NetworkServiceError.swift in Sources */,
 				A1DE0C6728A92CEB00629BE0 /* StubURLProtocol.swift in Sources */,
