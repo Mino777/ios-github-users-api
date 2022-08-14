@@ -19,12 +19,12 @@ protocol UserListViewModelInput {
     func requestUserList()
     func didTapFollowButton(user: User, isFollowing: Bool)
     func showMyFollowingView()
-    var refreshLoading: PublishRelay<Bool> { get }
 }
 
 protocol UserListViewModelOutput {
     var state: PublishSubject<UserListViewModelState> { get }
     var users: BehaviorRelay<[User]> { get }
+    var refreshLoading: PublishRelay<Bool> { get }
 }
 
 protocol UserListViewModelable: UserListViewModelInput, UserListViewModelOutput {}
@@ -33,15 +33,18 @@ final class UserListViewModel: UserListViewModelable {
     private let useCase: UserUseCaseable
     private let disposeBag = DisposeBag()
     
+    // MARK: Output
+    
     let state = PublishSubject<UserListViewModelState>()
     let users = BehaviorRelay<[User]>(value: [])
-    
     let refreshLoading = PublishRelay<Bool>()
     
     init(useCase: UserUseCaseable) {
         self.useCase = useCase
     }
 }
+
+// MARK: Input
 
 extension UserListViewModel {
     func requestUserList() {
@@ -57,6 +60,15 @@ extension UserListViewModel {
     }
     
     func didTapFollowButton(user: User, isFollowing: Bool) {
+        updateUserInLocalDatabase(user, isFollowing)
+        updateUserInMemory(user, isFollowing)
+    }
+    
+    func showMyFollowingView() {
+        state.onNext(.showMyFollowingView)
+    }
+    
+    private func updateUserInLocalDatabase(_ user: User, _ isFollowing: Bool) {
         let updatedUser = User(
             login: user.login,
             id: user.id,
@@ -71,15 +83,9 @@ extension UserListViewModel {
         } else {
             useCase.delete(updatedUser)
         }
-        
-        updateUser(user, isFollowing)
     }
     
-    func showMyFollowingView() {
-        state.onNext(.showMyFollowingView)
-    }
-    
-    private func updateUser(_ user: User, _ isFollowing: Bool) {
+    private func updateUserInMemory(_ user: User, _ isFollowing: Bool) {
         if let updateNeededIndex = users.value.firstIndex(of: user) {
             var currentUsers = users.value
             currentUsers[updateNeededIndex].isFollowing = isFollowing

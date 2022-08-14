@@ -22,6 +22,8 @@ protocol FollowingListCellViewModelable: FollowingListCellViewModelInput, Follow
 final class FollowingListCellViewModel: FollowingListCellViewModelable {
     private(set) var user: User
     
+    // MARK: Output
+    
     let userImageEvent = BehaviorRelay<String>(value: "")
     let userNameEvent = BehaviorRelay<String>(value: "")
     
@@ -30,8 +32,14 @@ final class FollowingListCellViewModel: FollowingListCellViewModelable {
     }
 }
 
+// MARK: Input
+
 extension FollowingListCellViewModel {
     func cellDidBind() {
+        setupData()
+    }
+    
+    private func setupData() {
         userImageEvent.accept(user.avatarURL)
         userNameEvent.accept(user.login)
     }

@@ -24,15 +24,24 @@ final class FollowingListViewFactory {
     }
 }
 
+// MARK: Make Layer Component
+
 extension FollowingListViewFactory: FollowingListViewFactoriable {
+    
+    // MARK: ViewController
+    
     func makeFollowingListViewController() -> FollowingListViewController {
         return FollowingListViewController(viewModel: makeFollowingListViewModel())
     }
 
+    // MARK: ViewModel
+    
     private func makeFollowingListViewModel() -> FollowingListViewModelable {
         return FollowingListViewModel(useCase: dependencies.userUseCase)
     }
 
+    // MARK: Coordinator
+    
     func makeFollowingListViewCoordinator(navigationController: UINavigationController) -> FollowingListViewCoordinator {
         return FollowingListViewCoordinator(navigationController: navigationController, factory: self)
     }

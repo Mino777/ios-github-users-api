@@ -20,6 +20,8 @@ final class FollowingListViewCoordinator: Coordinator {
     }
 }
 
+// MARK: View Transition
+
 extension FollowingListViewCoordinator {
     func start() {
         let followingListViewController = factory.makeFollowingListViewController()

@@ -38,6 +38,7 @@ final class UserListViewController: UIViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindUI()
         bind()
         makeDataSource()
     }
@@ -47,6 +48,8 @@ final class UserListViewController: UIViewController, Alertable {
         viewModel.requestUserList()
     }
 }
+
+// MARK: Setup, Datasource & Snapshot
 
 extension UserListViewController {
     private func setupView() {
@@ -113,7 +116,34 @@ extension UserListViewController {
     }
 }
 
+// MARK: bindUI, bind
+
 extension UserListViewController {
+    private func bindUI() {
+        refreshControl.rx.controlEvent(.valueChanged)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .bind(with: self) { wself, _ in
+                wself.viewModel.refreshLoading.accept(true)
+                wself.viewModel.requestUserList()
+            }
+            .disposed(by: disposeBag)
+        
+        navigationItem.rightBarButtonItem?.rx.tap
+            .bind(with: self) { wself, _ in
+                wself.viewModel.showMyFollowingView()
+            }
+            .disposed(by: disposeBag)
+        
+        userListView.userListTableView.rx.itemSelected
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { wself, indexPath in
+                wself.userListView.userListTableView.deselectRow(at: indexPath, animated: true)
+                wself.coordinator?.showUserDetail(user: wself.viewModel.users.value[safe: indexPath.row] ?? User.empty)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func bind() {
         viewModel.state
             .observe(on: MainScheduler.instance)
@@ -135,31 +165,8 @@ extension UserListViewController {
             }
             .disposed(by: disposeBag)
         
-        refreshControl.rx.controlEvent(.valueChanged)
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
-            .bind(with: self) { wself, _ in
-                wself.viewModel.refreshLoading.accept(true)
-                wself.viewModel.requestUserList()
-            }
-            .disposed(by: disposeBag)
-        
         viewModel.refreshLoading
             .bind(to: refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBag)
-        
-        navigationItem.rightBarButtonItem?.rx.tap
-            .bind(with: self) { wself, _ in
-                wself.viewModel.showMyFollowingView()
-            }
-            .disposed(by: disposeBag)
-        
-        userListView.userListTableView.rx.itemSelected
-            .observe(on: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe { wself, indexPath in
-                wself.userListView.userListTableView.deselectRow(at: indexPath, animated: true)
-                wself.coordinator?.showUserDetail(user: wself.viewModel.users.value[safe: indexPath.row] ?? User.empty)
-            }
             .disposed(by: disposeBag)
     }
 }

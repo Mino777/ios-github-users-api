@@ -17,7 +17,6 @@ protocol UserDetailViewModelInput {
     func requestFollowingList()
     func requestFollowerList()
     func didTapFollowButton()
-    var refreshLoading: PublishRelay<Bool> { get }
 }
 
 protocol UserDetailViewModelOutput {
@@ -25,6 +24,7 @@ protocol UserDetailViewModelOutput {
     var users: BehaviorRelay<[User]> { get }
     var userImageEvent: BehaviorRelay<String> { get }
     var userNameEvent: BehaviorRelay<String> { get }
+    var refreshLoading: PublishRelay<Bool> { get }
     var isFollwoing: BehaviorRelay<Bool> { get }
     var userFollowingState: PublishRelay<Bool> { get }
 }
@@ -36,6 +36,8 @@ final class UserDetailViewModel: UserDetailViewModelable {
     private(set) var user: User
     private let disposeBag = DisposeBag()
 
+    // MARK: Output
+    
     let state = PublishSubject<UserDetailViewModelState>()
     let users = BehaviorRelay<[User]>(value: [])
     
@@ -52,14 +54,14 @@ final class UserDetailViewModel: UserDetailViewModelable {
     }
 }
 
+// MARK: Input
+
 extension UserDetailViewModel {
     func viewDidBind() {
         requestFollowingList()
-        userImageEvent.accept(user.avatarURL)
-        userNameEvent.accept(user.login)
-        userFollowingState.accept(user.isFollowing)
+        setupData()
     }
-    
+        
     func requestFollowingList() {
         useCase.requestFollowingList(user.followingURL)
             .subscribe(with: self) { wself, result in
@@ -71,6 +73,12 @@ extension UserDetailViewModel {
                 wself.refreshLoading.accept(false)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func setupData() {
+        userImageEvent.accept(user.avatarURL)
+        userNameEvent.accept(user.login)
+        userFollowingState.accept(user.isFollowing)
     }
     
     func requestFollowerList() {
@@ -89,6 +97,12 @@ extension UserDetailViewModel {
     func didTapFollowButton() {
         user.isFollowing.toggle()
         
+        updateUserInLocalDatabase()
+        
+        userFollowingState.accept(user.isFollowing)
+    }
+    
+    private func updateUserInLocalDatabase() {
         let updatedUser = User(
             login: user.login,
             id: user.id,
@@ -103,8 +117,6 @@ extension UserDetailViewModel {
         } else {
             useCase.delete(updatedUser)
         }
-        
-        userFollowingState.accept(user.isFollowing)
     }
 }
 

@@ -86,7 +86,9 @@ final class UserStorage: UserStorageable {
     }
     
     func delete(_ item: User) {
-        write(.deleteFail) {
+        write(.deleteFail) { [weak self] in
+            guard let self = self else { return }
+            
             guard let realmModel = self.realm.object(ofType: UserRealm.self, forPrimaryKey: item.id) else {
                 return
             }

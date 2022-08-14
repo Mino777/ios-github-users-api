@@ -20,6 +20,8 @@ final class UserListViewCoordinator: Coordinator {
     }
 }
 
+// MARK: View Transition
+
 extension UserListViewCoordinator {
     func start() {
         let userListViewController = dependencies.makeUserListViewController()

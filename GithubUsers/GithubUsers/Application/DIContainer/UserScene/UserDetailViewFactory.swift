@@ -24,15 +24,24 @@ final class UserDetailViewFactory {
     }
 }
 
+// MARK: Make Layer Component
+
 extension UserDetailViewFactory: UserDetailViewFactoriable {
+    
+    // MARK: ViewController
+    
     func makeUserDetailViewController(_ user: User) -> UserDetailViewController {
         return UserDetailViewController(viewModel: makeUserDetailViewModel(user))
     }
 
+    // MARK: ViewModel
+    
     private func makeUserDetailViewModel(_ user: User) -> UserDetailViewModelable {
         return UserDetailViewModel(useCase: dependencies.userUseCase, user: user)
     }
 
+    // MARK: Coordinator
+    
     func makeUserDetailViewCoordinator(navigationController: UINavigationController) -> UserDetailViewCoordinator {
         return UserDetailViewCoordinator(navigationController: navigationController, factory: self)
     }

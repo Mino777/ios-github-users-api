@@ -47,6 +47,8 @@ final class FollowingListViewController: UIViewController, Alertable {
     }
 }
 
+// MARK: Setup, Datasource & Snapshot
+
 extension FollowingListViewController {
     private func setupView() {
         setupViewAttribute()
@@ -106,6 +108,8 @@ extension FollowingListViewController {
         }
     }
 }
+
+// MARK: bind
 
 extension FollowingListViewController {
     private func bind() {

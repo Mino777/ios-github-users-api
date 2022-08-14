@@ -20,6 +20,8 @@ final class UserDetailViewCoordinator: Coordinator {
     }
 }
 
+// MARK: View Transition
+
 extension UserDetailViewCoordinator {
     func start(_ user: User) {
         let UserDetailViewController = factory.makeUserDetailViewController(user)

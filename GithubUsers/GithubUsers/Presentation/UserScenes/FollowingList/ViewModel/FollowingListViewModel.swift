@@ -29,6 +29,8 @@ final class FollowingListViewModel: FollowingListViewModelable {
     private let useCase: UserUseCaseable
     private let disposeBag = DisposeBag()
 
+    // MARK: Output
+    
     let state = PublishSubject<FollowingListViewModelState>()
     let users = BehaviorRelay<[User]>(value: [])
     
@@ -56,8 +58,14 @@ final class FollowingListViewModel: FollowingListViewModelable {
     }
 }
 
+// MARK: Input
+
 extension FollowingListViewModel {
     func didTapUnFollowButton(user: User) {
+        deleteUserInLocalDatabase(user)
+    }
+    
+    private func deleteUserInLocalDatabase(_ user: User) {
         let updatedUser = User(
             login: user.login,
             id: user.id,

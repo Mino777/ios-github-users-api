@@ -22,6 +22,8 @@ protocol UserDetailCellViewModelable: UserDetailCellViewModelInput, FollowingLis
 final class UserDetailCellViewModel: UserDetailCellViewModelable {
     private(set) var user: User
     
+    // MARK: Output
+    
     let userImageEvent = BehaviorRelay<String>(value: "")
     let userNameEvent = BehaviorRelay<String>(value: "")
     
@@ -30,8 +32,14 @@ final class UserDetailCellViewModel: UserDetailCellViewModelable {
     }
 }
 
+// MARK: Input
+
 extension UserDetailCellViewModel {
     func cellDidBind() {
+        setupData()
+    }
+    
+    private func setupData() {
         userImageEvent.accept(user.avatarURL)
         userNameEvent.accept(user.login)
     }

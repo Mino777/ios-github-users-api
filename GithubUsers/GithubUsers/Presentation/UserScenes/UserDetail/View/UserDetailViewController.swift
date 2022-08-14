@@ -37,6 +37,7 @@ final class UserDetailViewController: UIViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindUI()
         bind()
         makeDataSource()
         viewModel.viewDidBind()
@@ -49,6 +50,8 @@ final class UserDetailViewController: UIViewController, Alertable {
         }
     }
 }
+
+// MARK: Setup, Datasource & Snapshot
 
 extension UserDetailViewController {
     private func setupView() {
@@ -99,7 +102,47 @@ extension UserDetailViewController {
     }
 }
 
+// MARK: bindUI, bind
+
 extension UserDetailViewController {
+    private func bindUI() {
+        refreshControl.rx.controlEvent(.valueChanged)
+            .debounce(.seconds(2), scheduler: MainScheduler.instance)
+            .bind(with: self) { wself, _ in
+                wself.viewModel.refreshLoading.accept(true)
+                
+                if wself.viewModel.isFollwoing.value {
+                    wself.viewModel.requestFollowingList()
+                } else {
+                    wself.viewModel.requestFollowerList()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        userDetailView.followingButton.rx.tap
+            .withUnretained(self)
+            .subscribe { wself, _ in
+                wself.viewModel.requestFollowingList()
+                wself.userDetailView.changeFollowButton(true)
+            }
+            .disposed(by: disposeBag)
+        
+        userDetailView.followerButton.rx.tap
+            .withUnretained(self)
+            .subscribe { wself, _ in
+                wself.viewModel.requestFollowerList()
+                wself.userDetailView.changeFollowButton(false)
+            }
+            .disposed(by: disposeBag)
+        
+        userDetailView.followStateButton.rx.tap
+            .withUnretained(self)
+            .subscribe { wself, _ in
+                wself.viewModel.didTapFollowButton()
+            }
+            .disposed(by: disposeBag)
+    }
+    
     private func bind() {
         viewModel.state
             .observe(on: MainScheduler.instance)
@@ -130,38 +173,9 @@ extension UserDetailViewController {
         viewModel.userNameEvent
             .bind(to: userDetailView.userNameLabel.rx.text)
             .disposed(by: disposeBag)
-                
-        refreshControl.rx.controlEvent(.valueChanged)
-            .debounce(.seconds(2), scheduler: MainScheduler.instance)
-            .bind(with: self) { wself, _ in
-                wself.viewModel.refreshLoading.accept(true)
-                
-                if wself.viewModel.isFollwoing.value {
-                    wself.viewModel.requestFollowingList()
-                } else {
-                    wself.viewModel.requestFollowerList()
-                }
-            }
-            .disposed(by: disposeBag)
         
         viewModel.refreshLoading
             .bind(to: refreshControl.rx.isRefreshing)
-            .disposed(by: disposeBag)
-        
-        userDetailView.followingButton.rx.tap
-            .withUnretained(self)
-            .subscribe { wself, _ in
-                wself.viewModel.requestFollowingList()
-                wself.userDetailView.changeFollowButton(true)
-            }
-            .disposed(by: disposeBag)
-        
-        userDetailView.followerButton.rx.tap
-            .withUnretained(self)
-            .subscribe { wself, _ in
-                wself.viewModel.requestFollowerList()
-                wself.userDetailView.changeFollowButton(false)
-            }
             .disposed(by: disposeBag)
         
         viewModel.userFollowingState
@@ -172,12 +186,5 @@ extension UserDetailViewController {
                 wself.navigationItem.setRightBarButton(followStateButton, animated: true)
             }
             .disposed(by: disposeBag)
-        
-        userDetailView.followStateButton.rx.tap
-            .withUnretained(self)
-            .subscribe { wself, _ in
-                wself.viewModel.didTapFollowButton()
-            }
-            .disposed(by: disposeBag)
-    }    
+    }
 }

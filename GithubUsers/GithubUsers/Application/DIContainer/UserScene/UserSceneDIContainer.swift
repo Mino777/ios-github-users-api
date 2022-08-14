@@ -29,10 +29,17 @@ final class UserSceneDIContainer {
     }
 }
 
+// MARK: Make Layer Component
+
 extension UserSceneDIContainer: UserSceneDIContainerable {
+    
+    // MARK: ViewController
+    
     func makeUserListViewController() -> UserListViewController {
         return UserListViewController(viewModel: makeUserListViewModel())
     }
+    
+    // MARK: Coordinator
     
     func makeUserListViewCoordinator(
         navigationController: UINavigationController
@@ -43,13 +50,19 @@ extension UserSceneDIContainer: UserSceneDIContainerable {
         )
     }
     
+    // MARK: ViewModel
+    
     private func makeUserListViewModel() -> UserListViewModelable {
         return UserListViewModel(useCase: makeUserUseCase())
     }
     
+    // MARK: UseCase
+    
     private func makeUserUseCase() -> UserUseCaseable {
         return UserUseCase(userRepository: makeUserRepository())
     }
+    
+    // MARK: Repository
     
     private func makeUserRepository() -> UserRepositoriable {
         return UserRepository(
@@ -57,6 +70,8 @@ extension UserSceneDIContainer: UserSceneDIContainerable {
             networkService: dependencies.networkService
         )
     }
+    
+    // MARK: ViewFactory
     
     func makeFollowingListViewFactory() -> FollowingListViewFactoriable {
         return FollowingListViewFactory(

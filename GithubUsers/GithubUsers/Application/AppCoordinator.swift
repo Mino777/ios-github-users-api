@@ -30,7 +30,11 @@ final class AppCoordinator: Coordinator {
         self.navigationController = navigationController
         self.appDIContainer = appDIContainer
     }
-    
+}
+
+// MARK: View Transition
+
+extension AppCoordinator {
     func start() {
         guard let navigationController = navigationController else { return }
 

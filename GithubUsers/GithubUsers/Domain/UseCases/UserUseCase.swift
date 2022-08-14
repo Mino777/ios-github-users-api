@@ -24,6 +24,8 @@ final class UserUseCase {
     }
 }
 
+// MARK: Web Remote API
+
 extension UserUseCase: UserUseCaseable {
     func requestUserList() -> Observable<[User]> {
         return Observable.zip(
@@ -52,7 +54,11 @@ extension UserUseCase: UserUseCaseable {
     func requestFollowingList(_ url: String) -> Observable<[User]> {
         userRepository.requestUserList(EndpointStorage.following(url).endPoint)
     }
-    
+}
+
+// MARK: Local Database
+
+extension UserUseCase {
     func create(_ item: User) {
         userRepository.create(item)
     }

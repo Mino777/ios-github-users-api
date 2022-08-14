@@ -18,6 +18,8 @@ final class UserRepository {
     }
 }
 
+// MARK: Web Remote API
+
 extension UserRepository: UserRepositoriable {
     func requestUserList(_ endpoint: Endpoint) -> Observable<[User]> {
         return networkService.request(endpoint: endpoint)
@@ -27,11 +29,15 @@ extension UserRepository: UserRepositoriable {
                 let users = decodedData?.map {
                     $0.toDomain()
                 }
-                                
+                
                 return users ?? []
             }
     }
-    
+}
+
+// MARK: Local Database
+
+extension UserRepository {
     func followingObservable() -> Observable<[User]> {
         userStorage.followingObservable()
     }
