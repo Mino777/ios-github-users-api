@@ -26,11 +26,19 @@ final class StubUserUseCase: UserUseCaseable {
     }
     
     func requestFollowerList(_ url: String) -> Observable<[User]> {
-        return Observable.just(users)
+        if isSuccess {
+            return Observable.just(users)
+        } else {
+            return Observable.error(NetworkServiceError.badRequest)
+        }
     }
     
     func requestFollowingList(_ url: String) -> Observable<[User]> {
-        return Observable.just(users)
+        if isSuccess {
+            return Observable.just(users)
+        } else {
+            return Observable.error(NetworkServiceError.badRequest)
+        }
     }
     
     func create(_ item: User) {
@@ -38,7 +46,11 @@ final class StubUserUseCase: UserUseCaseable {
     }
     
     var followingUsersSubject: BehaviorSubject<UserStorageState> {
-        return BehaviorSubject<UserStorageState>(value: .success(items: users))
+        if isSuccess {
+            return BehaviorSubject<UserStorageState>(value: .success(items: users))
+        } else {
+            return BehaviorSubject<UserStorageState>(value: .failure(error: .readFail))
+        }
     }
     
     func delete(_ item: User) {
