@@ -5,7 +5,6 @@
 //  Created by 조민호 on 2022/08/15.
 //
 
-import XCTest
 import RxSwift
 
 @testable import GithubUsers
@@ -33,9 +32,5 @@ final class MockUserStorage: UserStorageable {
     
     func delete(_ item: UserRealm) {
         callCount += 1
-    }
-    
-    func verifyStorage(callCount: Int = 1) {
-        XCTAssertEqual(self.callCount, callCount)
     }
 }

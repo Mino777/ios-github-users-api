@@ -71,6 +71,11 @@
 		A1DE0C7028A958D800629BE0 /* StubNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */; };
 		A1DE0C7528A95B7800629BE0 /* UserRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7428A95B7800629BE0 /* UserRepositoryTests.swift */; };
 		A1DE0C7828A95DE300629BE0 /* MockUserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */; };
+		A1DE0C7A28A966FE00629BE0 /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7928A966FE00629BE0 /* MockUserRepository.swift */; };
+		A1DE0C7D28A9683500629BE0 /* UserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7C28A9683500629BE0 /* UserUseCaseTests.swift */; };
+		A1DE0C7F28AA061000629BE0 /* StubUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7E28AA061000629BE0 /* StubUserUseCase.swift */; };
+		A1DE0C8228AA09E000629BE0 /* UserListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */; };
+		A1DE0C8428AA274300629BE0 /* FollowingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +158,11 @@
 		A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNetworkService.swift; sourceTree = "<group>"; };
 		A1DE0C7428A95B7800629BE0 /* UserRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryTests.swift; sourceTree = "<group>"; };
 		A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStorage.swift; sourceTree = "<group>"; };
+		A1DE0C7928A966FE00629BE0 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
+		A1DE0C7C28A9683500629BE0 /* UserUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseTests.swift; sourceTree = "<group>"; };
+		A1DE0C7E28AA061000629BE0 /* StubUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUserUseCase.swift; sourceTree = "<group>"; };
+		A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModelTests.swift; sourceTree = "<group>"; };
+		A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +562,8 @@
 		A1CC0C6A28A37C2100C7D4B7 /* GithubUsersTests */ = {
 			isa = PBXGroup;
 			children = (
+				A1DE0C8028AA09CB00629BE0 /* ViewModel */,
+				A1DE0C7B28A9682800629BE0 /* UseCase */,
 				A1DE0C7328A95B6200629BE0 /* Repository */,
 				A1DE0C6828A939EF00629BE0 /* Network */,
 				A1DE0C6C28A9530000629BE0 /* Extensions */,
@@ -594,6 +606,7 @@
 			children = (
 				A1DE0C6628A92CEB00629BE0 /* StubURLProtocol.swift */,
 				A1DE0C6F28A958D800629BE0 /* StubNetworkService.swift */,
+				A1DE0C7E28AA061000629BE0 /* StubUserUseCase.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -626,8 +639,26 @@
 			isa = PBXGroup;
 			children = (
 				A1DE0C7728A95DE300629BE0 /* MockUserStorage.swift */,
+				A1DE0C7928A966FE00629BE0 /* MockUserRepository.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		A1DE0C7B28A9682800629BE0 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				A1DE0C7C28A9683500629BE0 /* UserUseCaseTests.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		A1DE0C8028AA09CB00629BE0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */,
+				A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -828,12 +859,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1DE0C7F28AA061000629BE0 /* StubUserUseCase.swift in Sources */,
 				A1DE0C7828A95DE300629BE0 /* MockUserStorage.swift in Sources */,
+				A1DE0C7D28A9683500629BE0 /* UserUseCaseTests.swift in Sources */,
+				A1DE0C7A28A966FE00629BE0 /* MockUserRepository.swift in Sources */,
 				A1DE0C7028A958D800629BE0 /* StubNetworkService.swift in Sources */,
+				A1DE0C8228AA09E000629BE0 /* UserListViewModelTests.swift in Sources */,
 				A1DE0C7528A95B7800629BE0 /* UserRepositoryTests.swift in Sources */,
 				A1DE0C6A28A93A2E00629BE0 /* NetworkServiceTests.swift in Sources */,
 				A1DE0C6E28A9532D00629BE0 /* NetworkServiceError.swift in Sources */,
 				A1DE0C6728A92CEB00629BE0 /* StubURLProtocol.swift in Sources */,
+				A1DE0C8428AA274300629BE0 /* FollowingListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

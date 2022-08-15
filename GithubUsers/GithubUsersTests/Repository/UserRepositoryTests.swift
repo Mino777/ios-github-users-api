@@ -11,8 +11,8 @@ import XCTest
 import RxSwift
 
 final class UserRepositoryTests: XCTestCase {
-    private var dummyModel: [UserResponseDTO]!
-    private var dummyModelData: Data!
+    var dummyModel: [UserResponseDTO]!
+    var dummyModelData: Data!
     
     var sut: UserRepositoriable!
     var mockUserStorage: MockUserStorage!
@@ -78,7 +78,7 @@ final class UserRepositoryTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
     }
     
-    func test_create를호출할때_callCount가_1올라가야한다() {
+    func test_create를호출할때_callCount가_1증가해야한다() {
         // given
         let expected = 1
         
@@ -87,10 +87,9 @@ final class UserRepositoryTests: XCTestCase {
         
         // then
         XCTAssertEqual(expected, mockUserStorage.callCount)
-        mockUserStorage.verifyStorage()
     }
     
-    func test_followingUsersSubject를호출할때_callCount가_1올라가야한다() {
+    func test_followingUsersSubject를호출할때_callCount가_1증가해야한다() {
         // given
         let expected = 1
         
@@ -99,10 +98,9 @@ final class UserRepositoryTests: XCTestCase {
         
         // then
         XCTAssertEqual(expected, mockUserStorage.callCount)
-        mockUserStorage.verifyStorage()
     }
     
-    func test_followingObservable를호출할때_callCount가_1올라가야한다() {
+    func test_followingObservable를호출할때_callCount가_1증가해야한다() {
         // given
         let expected = 1
         
@@ -111,10 +109,9 @@ final class UserRepositoryTests: XCTestCase {
         
         // then
         XCTAssertEqual(expected, mockUserStorage.callCount)
-        mockUserStorage.verifyStorage()
     }
     
-    func test_delete를호출할때_callCount가_1올라가야한다() {
+    func test_delete를호출할때_callCount가_1증가해야한다() {
         // given
         let expected = 1
         
@@ -123,6 +120,5 @@ final class UserRepositoryTests: XCTestCase {
         
         // then
         XCTAssertEqual(expected, mockUserStorage.callCount)
-        mockUserStorage.verifyStorage()
     }
 }
