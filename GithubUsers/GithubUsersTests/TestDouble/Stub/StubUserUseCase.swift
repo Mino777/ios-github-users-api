@@ -11,6 +11,14 @@ import RxSwift
 
 final class StubUserUseCase: UserUseCaseable {
     var users: [User] = []
+    var user: User = User(
+        login: "",
+        id: 4,
+        avatarURL: "",
+        followersURL: "",
+        followingURL: "",
+        isFollowing: false
+    )
     var isSuccess: Bool = true
 
     init(users: [User]) {

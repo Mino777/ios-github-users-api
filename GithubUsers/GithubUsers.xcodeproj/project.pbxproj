@@ -76,6 +76,7 @@
 		A1DE0C7F28AA061000629BE0 /* StubUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C7E28AA061000629BE0 /* StubUserUseCase.swift */; };
 		A1DE0C8228AA09E000629BE0 /* UserListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */; };
 		A1DE0C8428AA274300629BE0 /* FollowingListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */; };
+		A1DE0C8628AA2B1E00629BE0 /* UserDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE0C8528AA2B1E00629BE0 /* UserDetailViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		A1DE0C7E28AA061000629BE0 /* StubUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUserUseCase.swift; sourceTree = "<group>"; };
 		A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModelTests.swift; sourceTree = "<group>"; };
 		A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListViewModelTests.swift; sourceTree = "<group>"; };
+		A1DE0C8528AA2B1E00629BE0 /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -657,6 +659,7 @@
 			children = (
 				A1DE0C8128AA09E000629BE0 /* UserListViewModelTests.swift */,
 				A1DE0C8328AA274300629BE0 /* FollowingListViewModelTests.swift */,
+				A1DE0C8528AA2B1E00629BE0 /* UserDetailViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				A1DE0C7A28A966FE00629BE0 /* MockUserRepository.swift in Sources */,
 				A1DE0C7028A958D800629BE0 /* StubNetworkService.swift in Sources */,
 				A1DE0C8228AA09E000629BE0 /* UserListViewModelTests.swift in Sources */,
+				A1DE0C8628AA2B1E00629BE0 /* UserDetailViewModelTests.swift in Sources */,
 				A1DE0C7528A95B7800629BE0 /* UserRepositoryTests.swift in Sources */,
 				A1DE0C6A28A93A2E00629BE0 /* NetworkServiceTests.swift in Sources */,
 				A1DE0C6E28A9532D00629BE0 /* NetworkServiceError.swift in Sources */,
