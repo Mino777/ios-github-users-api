@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 
 final class FollowingListViewController: UIViewController, Alertable {
+    private enum Constants {
+        static let myFollowing = "내 팔로잉"
+    }
+    
     private lazy var followingListView = FollowingListView()
     weak var coordinator: FollowingListViewCoordinator?
     private let viewModel: FollowingListViewModelable
@@ -72,7 +76,7 @@ extension FollowingListViewController {
     }
     
     private func setupNavigationBar() {
-        title = "내 팔로잉"
+        title = Constants.myFollowing
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     

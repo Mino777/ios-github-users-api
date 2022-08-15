@@ -10,6 +10,11 @@ import UIKit
 import SnapKit
 
 final class ListTableViewCellView: UIView {
+    private enum Constants {
+        static let unFollow = "언팔로우"
+        static let follow = "팔로우"
+    }
+    
     let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -88,11 +93,11 @@ final class ListTableViewCellView: UIView {
     
     func changeButtonState(_ state: Bool) {
         if state {
-            followButton.setTitle("언팔로우", for: .normal)
+            followButton.setTitle(Constants.unFollow, for: .normal)
             followButton.setTitleColor(.white, for: .normal)
             followButton.backgroundColor = .black
         } else {
-            followButton.setTitle("팔로우", for: .normal)
+            followButton.setTitle(Constants.follow, for: .normal)
             followButton.setTitleColor(.black, for: .normal)
             followButton.backgroundColor = .white
         }

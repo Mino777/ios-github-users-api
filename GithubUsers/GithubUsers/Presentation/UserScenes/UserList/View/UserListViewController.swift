@@ -11,6 +11,12 @@ import SnapKit
 import RxSwift
 
 final class UserListViewController: UIViewController, Alertable {
+    private enum Constants {
+        static let refresh = "새로고침"
+        static let navigationTitle = "사용자 리스트"
+        static let myFollowing = "내 팔로잉"
+    }
+    
     private lazy var userListView = UserListView()
     weak var coordinator: UserListViewCoordinator?
     private let viewModel: UserListViewModelable
@@ -62,7 +68,7 @@ extension UserListViewController {
     private func setupViewAttribute() {
         view.backgroundColor = .systemBackground
         userListView.userListTableView.refreshControl = refreshControl
-        refreshControl.attributedTitle = NSAttributedString(string: "새로고침")
+        refreshControl.attributedTitle = NSAttributedString(string: Constants.refresh)
     }
     
     private func addSubviews() {
@@ -76,10 +82,10 @@ extension UserListViewController {
     }
     
     private func setupNavigationBar() {
-        title = "사용자 리스트"
+        title = Constants.navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "내 팔로잉", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.myFollowing, style: .plain, target: self, action: nil)
     }
     
     private func makeDataSource() {

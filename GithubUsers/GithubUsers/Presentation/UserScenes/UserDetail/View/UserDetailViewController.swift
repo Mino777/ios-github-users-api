@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 
 final class UserDetailViewController: UIViewController, Alertable {
+    private enum Constants {
+        static let refresh = "새로고침"
+    }
+    
     private lazy var userDetailView = UserDetailView()
     weak var coordinator: UserDetailViewCoordinator?
     private let viewModel: UserDetailViewModelable
@@ -64,7 +68,7 @@ extension UserDetailViewController {
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
         userDetailView.followListTableView.refreshControl = refreshControl
-        refreshControl.attributedTitle = NSAttributedString(string: "새로고침")
+        refreshControl.attributedTitle = NSAttributedString(string: Constants.refresh)
     }
     
     private func addSubviews() {

@@ -8,6 +8,13 @@
 import UIKit
 
 final class UserDetailView: UIView {
+    private enum Constants {
+        static let following = "팔로잉"
+        static let follower = "팔로워"
+        static let unFollow = "언팔로우"
+        static let follow = "팔로우"
+    }
+    
     let followStateButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 70, height: 25)
@@ -53,7 +60,7 @@ final class UserDetailView: UIView {
     
     let followingButton: UIButton = {
         let button = UIButton()
-        button.setTitle("팔로잉", for: .normal)
+        button.setTitle(Constants.following, for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = .black
         button.isSelected = true
@@ -64,7 +71,7 @@ final class UserDetailView: UIView {
     
     let followerButton: UIButton = {
         let button = UIButton()
-        button.setTitle("팔로워", for: .normal)
+        button.setTitle(Constants.follower, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.backgroundColor = .white
         button.isSelected = false
@@ -129,11 +136,11 @@ final class UserDetailView: UIView {
     
     func changeFollowStateButton(_ state: Bool) {
         if state {
-            followStateButton.setTitle("언팔로우", for: .normal)
+            followStateButton.setTitle(Constants.unFollow, for: .normal)
             followStateButton.setTitleColor(.white, for: .normal)
             followStateButton.backgroundColor = .black
         } else {
-            followStateButton.setTitle("팔로우", for: .normal)
+            followStateButton.setTitle(Constants.follow, for: .normal)
             followStateButton.setTitleColor(.black, for: .normal)
             followStateButton.backgroundColor = .white
         }
